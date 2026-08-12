@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>FirstHugs | Baby Clothes</title>
 
   <meta
     name="description"
-    content="FirstHugs baby clothing - adorable and comfortable clothes for your little ones."
+    content="FirstHugs Baby Clothes - adorable and comfortable outfits for your little ones."
   >
 
   <link rel="stylesheet" href="style.css">
@@ -16,7 +21,6 @@
 
 <body>
 
-<!-- HEADER -->
 <header class="top">
 
   <a class="brand" href="#home">
@@ -30,19 +34,20 @@
     <a href="#home">Home</a>
     <a href="#products">Products</a>
     <a href="#about">About</a>
-    <a href="#shipping">Shipping & Returns</a>
+    <a href="#shipping">Shipping</a>
     <a href="#contact">Contact</a>
   </nav>
 
 </header>
 
 
-<!-- HOME -->
 <main>
+
+<!-- HOME -->
 
 <section class="hero" id="home">
 
-  <div>
+  <div class="hero-text">
 
     <p class="eyebrow">
       BABY CLOTHING
@@ -63,10 +68,15 @@
 
   </div>
 
-  <img
-    src="firsthugs-logo.jpeg"
-    alt="FirstHugs Baby Clothes"
-  >
+
+  <div class="hero-logo">
+
+    <img
+      src="firsthugs-logo.jpeg"
+      alt="FirstHugs Baby Clothes"
+    >
+
+  </div>
 
 </section>
 
@@ -97,21 +107,77 @@
         alt="FirstHugs Mesh Dress"
       >
 
-      <h3>
-        Mesh Dress
-      </h3>
+      <div class="product-info">
 
-      <p class="price">
-        RM150
-      </p>
+        <h3>
+          Mesh Dress
+        </h3>
 
-      <a
-        class="buy-button"
-        href="https://t.me/firsthugsAin?text=Hi%20FirstHugs%2C%20saya%20nak%20order%20Mesh%20Dress%20RM150"
-        target="_blank"
-      >
-        BUY NOW
-      </a>
+        <p class="price">
+          RM150
+        </p>
+
+
+        <label
+          class="size-label"
+          for="mesh-size"
+        >
+          Choose Size
+        </label>
+
+
+        <select
+          id="mesh-size"
+          class="size-select"
+        >
+
+          <option value="">
+            Select Size
+          </option>
+
+          <option value="3-6M">
+            3-6M
+          </option>
+
+          <option value="6-9M">
+            6-9M
+          </option>
+
+          <option value="9-12M">
+            9-12M
+          </option>
+
+          <option value="12-18M">
+            12-18M
+          </option>
+
+          <option value="1.5-2Y">
+            1.5-2Y
+          </option>
+
+          <option value="2-3Y">
+            2-3Y
+          </option>
+
+          <option value="3-4Y">
+            3-4Y
+          </option>
+
+          <option value="4-5Y">
+            4-5Y
+          </option>
+
+        </select>
+
+
+        <button
+          class="buy-button"
+          onclick="orderMeshDress()"
+        >
+          BUY NOW
+        </button>
+
+      </div>
 
     </article>
 
@@ -125,21 +191,24 @@
         Product photo coming soon
       </div>
 
-      <h3>
-        Baby Sleepsuit
-      </h3>
+      <div class="product-info">
 
-      <p class="price">
-        RM35
-      </p>
+        <h3>
+          Baby Sleepsuit
+        </h3>
 
-      <a
-        class="buy-button"
-        href="https://t.me/firsthugsAin?text=Hi%20FirstHugs%2C%20saya%20nak%20order%20Baby%20Sleepsuit%20RM35"
-        target="_blank"
-      >
-        BUY NOW
-      </a>
+        <p class="price">
+          RM35
+        </p>
+
+        <button
+          class="buy-button"
+          onclick="orderProduct('Baby Sleepsuit', 'RM35')"
+        >
+          BUY NOW
+        </button>
+
+      </div>
 
     </article>
 
@@ -153,30 +222,33 @@
         Product photo coming soon
       </div>
 
-      <h3>
-        Co-ord Set
-      </h3>
+      <div class="product-info">
 
-      <p class="price">
-        RM78
-      </p>
+        <h3>
+          Co-ord Set
+        </h3>
 
-      <a
-        class="buy-button"
-        href="https://t.me/firsthugsAin?text=Hi%20FirstHugs%2C%20saya%20nak%20order%20Co-ord%20Set%20RM78"
-        target="_blank"
-      >
-        BUY NOW
-      </a>
+        <p class="price">
+          RM78
+        </p>
+
+        <button
+          class="buy-button"
+          onclick="orderProduct('Co-ord Set', 'RM78')"
+        >
+          BUY NOW
+        </button>
+
+      </div>
 
     </article>
 
-
   </div>
 
+
   <p class="note">
-    For product availability, sizes and orders,
-    contact FirstHugs via Telegram.
+    Please contact FirstHugs to confirm
+    product availability before payment.
   </p>
 
 </section>
@@ -196,9 +268,13 @@
   </h2>
 
   <p>
-    FirstHugs offers cute and comfortable clothing
-    for babies. We believe every little moment
-    deserves something soft, lovely and made for
+    FirstHugs offers cute and comfortable
+    clothing for babies and little ones.
+  </p>
+
+  <p>
+    We believe every little moment deserves
+    something soft, lovely and made for
     tiny adventures.
   </p>
 
@@ -221,40 +297,42 @@
 
   <div class="info-grid">
 
-    <div>
+    <div class="info-card">
 
       <h3>
         Shipping
       </h3>
 
       <p>
-        Delivery charges and estimated delivery
-        time will be confirmed with customers
+        Delivery charges and estimated
+        delivery time will be confirmed
         before payment.
       </p>
 
       <p>
-        Orders are processed after payment
-        confirmation.
+        Orders will be processed after
+        payment confirmation.
       </p>
 
     </div>
 
 
-    <div>
+    <div class="info-card">
 
       <h3>
         Returns
       </h3>
 
       <p>
-        Please contact FirstHugs promptly if you
-        receive an incorrect or defective item.
+        Please contact FirstHugs promptly
+        if you receive an incorrect or
+        defective item.
       </p>
 
       <p>
-        Return eligibility is subject to the
-        item's condition and order details.
+        Return eligibility is subject
+        to the condition of the item
+        and order details.
       </p>
 
     </div>
@@ -286,17 +364,17 @@
   </p>
 
   <a
-    class="buy-button"
+    class="telegram-button"
     href="https://t.me/firsthugsAin"
     target="_blank"
   >
-    TELEGRAM US
+    OPEN TELEGRAM
   </a>
 
   <p class="small">
     Please confirm product availability,
-    size, delivery fee and final order total
-    before making payment.
+    size, delivery fee and final order
+    total before making payment.
   </p>
 
 </section>
@@ -305,23 +383,89 @@
 
 
 
-<!-- FOOTER -->
-
 <footer>
 
   <strong>
     FirstHugs
   </strong>
 
-  · Baby Clothes
-
-  <br>
-
   <span>
-    © 2026 FirstHugs. All rights reserved.
+    Baby Clothes
   </span>
 
+  <p>
+    © 2026 FirstHugs. All rights reserved.
+  </p>
+
 </footer>
+
+
+
+<script>
+
+/* MESH DRESS ORDER */
+
+function orderMeshDress() {
+
+  const size =
+    document.getElementById("mesh-size").value;
+
+  if (size === "") {
+
+    alert("Please select a size first.");
+
+    return;
+  }
+
+  const message =
+    "Hi FirstHugs! 🧸\n\n" +
+    "Saya nak order:\n" +
+    "Item: Mesh Dress\n" +
+    "Price: RM150\n" +
+    "Size: " + size + "\n\n" +
+    "Boleh check availability?";
+
+  openTelegram(message);
+}
+
+
+/* OTHER PRODUCT ORDER */
+
+function orderProduct(product, price) {
+
+  const message =
+    "Hi FirstHugs! 🧸\n\n" +
+    "Saya nak order:\n" +
+    "Item: " + product + "\n" +
+    "Price: " + price + "\n\n" +
+    "Boleh check availability?";
+
+  openTelegram(message);
+}
+
+
+/* OPEN TELEGRAM */
+
+function openTelegram(message) {
+
+  if (navigator.clipboard) {
+
+    navigator.clipboard
+      .writeText(message)
+      .catch(function() {});
+  }
+
+  const telegramLink =
+    "https://t.me/firsthugsAin?text=" +
+    encodeURIComponent(message);
+
+  window.open(
+    telegramLink,
+    "_blank"
+  );
+}
+
+</script>
 
 
 </body>
