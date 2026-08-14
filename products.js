@@ -81,6 +81,17 @@ const products = [
       { size: "9-12m", available: false },
       { size: "12-18m", available: true }
     ]
+  },
+
+  {
+    name: "(PRELOVED) Green Ditsy Floral Cotton Dress",
+    price: 45,
+    image: "green ditsy.png",
+
+    sizes: [
+      { size: "9-12m", available: false },
+      { size: "12-18m", available: true }
+    ]
   }
   
 ];
