@@ -48,6 +48,17 @@ const products = [
       { size: "1.5-2Y", available: true },
       { size: "6-9M", available: false }
     ]
+  },
+
+   {
+    name: "(PRELOVED) Navy Blue Cardigan",
+    price: 28,
+    image: "cardigan.png",
+
+    sizes: [
+      { size: "9-12m", available: true },
+      { size: "6-9M", available: false }
+    ]
   }
   
 ];
