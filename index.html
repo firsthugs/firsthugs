@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -21,7 +20,6 @@
     rel="stylesheet"
     href="style.css"
   >
-
 </head>
 
 
@@ -32,41 +30,20 @@
 
 <header class="top">
 
-  <a
-    class="brand"
-    href="#home"
-  >
-
+  <a class="brand" href="#home">
     <img
       src="firsthugs-logo.jpeg"
-      alt="FirstHugs"
+      alt="FirstHugs Baby Clothes Logo"
     >
-
   </a>
 
 
   <nav>
-
-    <a href="#home">
-      Home
-    </a>
-
-    <a href="#products">
-      Products
-    </a>
-
-    <a href="#about">
-      About
-    </a>
-
-    <a href="#shipping">
-      Shipping
-    </a>
-
-    <a href="#contact">
-      Contact
-    </a>
-
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+    <a href="#about">About</a>
+    <a href="#shipping">Shipping</a>
+    <a href="#contact">Contact</a>
   </nav>
 
 </header>
@@ -83,7 +60,7 @@
   id="home"
 >
 
-  <div>
+  <div class="hero-text">
 
     <p class="eyebrow">
       BABY CLOTHING
@@ -142,23 +119,23 @@
       type="search"
       id="product-search"
       placeholder="Search products..."
-      oninput="searchProducts()"
     >
 
   </div>
 
 
-  <!-- PRODUCTS AUTO APPEAR HERE -->
+  <!-- PRODUCTS AUTO LOAD HERE -->
 
   <div
     id="product-list"
     class="products"
-  ></div>
+  >
+  </div>
 
 
   <p class="note">
-    Please select your preferred size
-    before placing an order.
+    Select your preferred size before
+    placing an order.
   </p>
 
 </section>
@@ -213,6 +190,7 @@
 
   <div class="info-grid">
 
+
     <div class="info-card">
 
       <h3>
@@ -253,6 +231,7 @@
 
     </div>
 
+
   </div>
 
 </section>
@@ -278,9 +257,11 @@
     Contact FirstHugs via Telegram.
   </p>
 
+
   <p class="contact-number">
     @firsthugsAin
   </p>
+
 
   <a
     class="telegram-button"
@@ -292,11 +273,9 @@
 
 
   <p class="small">
-
     Please confirm product availability,
-    size, delivery fee and final order total
-    before making payment.
-
+    size, delivery fee and final order
+    total before making payment.
   </p>
 
 </section>
@@ -326,7 +305,7 @@
 
 
 
-<!-- PRODUCT DATABASE -->
+<!-- LOAD PRODUCT DATABASE -->
 
 <script src="products.js"></script>
 
@@ -337,11 +316,12 @@
 <script>
 
 
-/* =========================
-   SHOW PRODUCTS
-========================= */
+/* ==============================
+   DISPLAY PRODUCTS
+================================ */
 
 function displayProducts(productArray) {
+
 
   const productList =
     document.getElementById("product-list");
@@ -350,10 +330,21 @@ function displayProducts(productArray) {
   productList.innerHTML = "";
 
 
-  productArray.forEach((product, index) => {
+
+  productArray.forEach(function(product) {
 
 
-    /* PRODUCT IMAGE */
+    /*
+    Find actual position of product
+    inside main products database.
+    */
+
+    const productIndex =
+      products.indexOf(product);
+
+
+
+    /* IMAGE */
 
     let imageHTML;
 
@@ -361,19 +352,23 @@ function displayProducts(productArray) {
     if (product.image) {
 
       imageHTML = `
+
         <img
           class="product-image"
           src="${product.image}"
           alt="${product.name}"
         >
+
       `;
 
     } else {
 
       imageHTML = `
+
         <div class="placeholder">
           Product photo coming soon
         </div>
+
       `;
 
     }
@@ -383,32 +378,39 @@ function displayProducts(productArray) {
     /* SIZE OPTIONS */
 
     let sizeOptions = `
+
       <option value="">
         Select Size
       </option>
+
     `;
 
 
-    product.sizes.forEach(item => {
+
+    product.sizes.forEach(function(item) {
 
 
-      if (item.available) {
+      if (item.available === true) {
 
         sizeOptions += `
+
           <option value="${item.size}">
             ${item.size}
           </option>
+
         `;
 
       } else {
 
         sizeOptions += `
+
           <option
             value="${item.size}"
             disabled
           >
             ${item.size} — SOLD OUT
           </option>
+
         `;
 
       }
@@ -417,9 +419,9 @@ function displayProducts(productArray) {
 
 
 
-    /* PRODUCT CARD */
+    /* CREATE PRODUCT CARD */
 
-    productList.innerHTML += `
+    const productCard = `
 
       <article class="card">
 
@@ -440,13 +442,16 @@ function displayProducts(productArray) {
           </p>
 
 
-          <label class="size-label">
+          <label
+            class="size-label"
+            for="size-${productIndex}"
+          >
             Choose Size
           </label>
 
 
           <select
-            id="size-${index}"
+            id="size-${productIndex}"
             class="size-select"
           >
 
@@ -457,19 +462,26 @@ function displayProducts(productArray) {
 
           <button
             class="buy-button"
-            onclick="orderProduct(${index})"
+            type="button"
+            onclick="orderProduct(${productIndex})"
           >
-
             BUY NOW
-
           </button>
 
 
         </div>
 
+
       </article>
 
     `;
+
+
+    productList.insertAdjacentHTML(
+      "beforeend",
+      productCard
+    );
+
 
   });
 
@@ -477,53 +489,91 @@ function displayProducts(productArray) {
 
 
 
-/* =========================
-   SEARCH
-========================= */
+/* ==============================
+   SEARCH PRODUCTS
+================================ */
 
 function searchProducts() {
 
-  const search =
+
+  const searchText =
     document
       .getElementById("product-search")
       .value
+      .trim()
       .toLowerCase();
 
 
-  const filtered =
-    products.filter(product =>
 
-      product.name
+  const filteredProducts =
+    products.filter(function(product) {
+
+
+      return product.name
         .toLowerCase()
-        .includes(search)
-
-    );
+        .includes(searchText);
 
 
-  displayProducts(filtered);
+    });
+
+
+
+  displayProducts(
+    filteredProducts
+  );
 
 }
 
 
 
-/* =========================
-   ORDER
-========================= */
+/* ==============================
+   BUY NOW
+================================ */
 
-function orderProduct(index) {
+function orderProduct(productIndex) {
 
 
   const product =
-    products[index];
+    products[productIndex];
 
 
-  const size =
-    document
-      .getElementById(`size-${index}`)
-      .value;
+  if (!product) {
+
+    alert(
+      "Product not found. Please refresh the page."
+    );
+
+    return;
+
+  }
 
 
-  if (!size) {
+
+  const sizeBox =
+    document.getElementById(
+      "size-" + productIndex
+    );
+
+
+
+  if (!sizeBox) {
+
+    alert(
+      "Please refresh the page and try again."
+    );
+
+    return;
+
+  }
+
+
+
+  const selectedSize =
+    sizeBox.value;
+
+
+
+  if (selectedSize === "") {
 
     alert(
       "Please select a size first."
@@ -534,11 +584,14 @@ function orderProduct(index) {
   }
 
 
+
+  /* ORDER MESSAGE */
+
   const message =
 
     "Hi FirstHugs! 🧸\n\n" +
 
-    "Saya nak order:\n" +
+    "Saya nak order:\n\n" +
 
     "Item: " +
     product.name +
@@ -549,31 +602,48 @@ function orderProduct(index) {
     "\n" +
 
     "Size: " +
-    size +
+    selectedSize +
     "\n\n" +
 
     "Boleh check availability?";
 
 
 
-  if (navigator.clipboard) {
+  /*
+  Copy message as backup
+  */
+
+  if (
+    navigator.clipboard &&
+    window.isSecureContext
+  ) {
 
     navigator.clipboard
       .writeText(message)
-      .catch(function() {});
+      .catch(function() {
+
+        console.log(
+          "Clipboard unavailable"
+        );
+
+      });
 
   }
 
 
-  const telegram =
+
+  /* OPEN TELEGRAM */
+
+  const telegramLink =
 
     "https://t.me/firsthugsAin?text=" +
 
     encodeURIComponent(message);
 
 
+
   window.open(
-    telegram,
+    telegramLink,
     "_blank"
   );
 
@@ -581,9 +651,22 @@ function orderProduct(index) {
 
 
 
-/* =========================
+/* ==============================
+   SEARCH LISTENER
+================================ */
+
+document
+  .getElementById("product-search")
+  .addEventListener(
+    "input",
+    searchProducts
+  );
+
+
+
+/* ==============================
    START WEBSITE
-========================= */
+================================ */
 
 displayProducts(products);
 
@@ -592,4 +675,5 @@ displayProducts(products);
 
 
 </body>
+
 </html>
