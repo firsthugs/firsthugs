@@ -1,7 +1,7 @@
 const products = [
 
   {
-    name: "Mesh Dress",
+    name: "Cream EMbroidered Mesh Dress",
     price: 150,
     image: "mesh-dress.webp",
 
