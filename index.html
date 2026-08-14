@@ -16,17 +16,10 @@
     content="FirstHugs Baby Clothes - adorable and comfortable outfits for your little ones."
   >
 
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
+  <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body>
-
-
-<!-- HEADER -->
 
 <header class="top">
 
@@ -36,7 +29,6 @@
       alt="FirstHugs Baby Clothes Logo"
     >
   </a>
-
 
   <nav>
     <a href="#home">Home</a>
@@ -49,16 +41,9 @@
 </header>
 
 
-
 <main>
 
-
-<!-- HOME -->
-
-<section
-  class="hero"
-  id="home"
->
+<section class="hero" id="home">
 
   <div class="hero-text">
 
@@ -75,15 +60,11 @@
       thoughtfully selected by FirstHugs.
     </p>
 
-    <a
-      class="main-button"
-      href="#products"
-    >
+    <a class="main-button" href="#products">
       SHOP COLLECTION
     </a>
 
   </div>
-
 
   <img
     class="hero-logo"
@@ -94,13 +75,7 @@
 </section>
 
 
-
-<!-- PRODUCTS -->
-
-<section
-  id="products"
-  class="section"
->
+<section id="products" class="section">
 
   <p class="eyebrow">
     OUR COLLECTION
@@ -109,9 +84,6 @@
   <h2>
     FirstHugs Favourites
   </h2>
-
-
-  <!-- SEARCH -->
 
   <div class="search-area">
 
@@ -123,31 +95,19 @@
 
   </div>
 
-
-  <!-- PRODUCTS AUTO LOAD HERE -->
-
   <div
     id="product-list"
     class="products"
-  >
-  </div>
-
+  ></div>
 
   <p class="note">
-    Select your preferred size before
-    placing an order.
+    Select your preferred size before placing an order.
   </p>
 
 </section>
 
 
-
-<!-- ABOUT -->
-
-<section
-  id="about"
-  class="section soft"
->
+<section id="about" class="section soft">
 
   <p class="eyebrow">
     ABOUT US
@@ -164,20 +124,13 @@
 
   <p>
     We believe every little moment deserves
-    something soft, lovely and made for
-    tiny adventures.
+    something soft, lovely and made for tiny adventures.
   </p>
 
 </section>
 
 
-
-<!-- SHIPPING -->
-
-<section
-  id="shipping"
-  class="section"
->
+<section id="shipping" class="section">
 
   <p class="eyebrow">
     SHOPPING INFO
@@ -187,63 +140,45 @@
     Shipping & Returns
   </h2>
 
-
   <div class="info-grid">
 
-
     <div class="info-card">
 
-      <h3>
-        Shipping
-      </h3>
+      <h3>Shipping</h3>
 
       <p>
-        Delivery charges and estimated
-        delivery time will be confirmed
-        before payment.
+        Delivery charges and estimated delivery time
+        will be confirmed before payment.
       </p>
 
       <p>
-        Orders are processed after
-        payment confirmation.
+        Orders are processed after payment confirmation.
       </p>
 
     </div>
 
-
     <div class="info-card">
 
-      <h3>
-        Returns
-      </h3>
+      <h3>Returns</h3>
 
       <p>
-        Please contact FirstHugs promptly
-        if you receive an incorrect or
-        defective item.
+        Please contact FirstHugs promptly if you receive
+        an incorrect or defective item.
       </p>
 
       <p>
-        Return eligibility is subject
-        to the condition of the item
-        and order details.
+        Return eligibility is subject to the condition
+        of the item and order details.
       </p>
 
     </div>
-
 
   </div>
 
 </section>
 
 
-
-<!-- CONTACT -->
-
-<section
-  id="contact"
-  class="section contact"
->
+<section id="contact" class="section contact">
 
   <p class="eyebrow">
     CONTACT
@@ -257,11 +192,9 @@
     Contact FirstHugs via Telegram.
   </p>
 
-
   <p class="contact-number">
     @firsthugsAin
   </p>
-
 
   <a
     class="telegram-button"
@@ -271,31 +204,22 @@
     OPEN TELEGRAM
   </a>
 
-
   <p class="small">
     Please confirm product availability,
-    size, delivery fee and final order
-    total before making payment.
+    size, delivery fee and final order total
+    before making payment.
   </p>
 
 </section>
 
-
 </main>
 
 
-
-<!-- FOOTER -->
-
 <footer>
 
-  <strong>
-    FirstHugs
-  </strong>
+  <strong>FirstHugs</strong>
 
-  <p>
-    Baby Clothes
-  </p>
+  <p>Baby Clothes</p>
 
   <small>
     © 2026 FirstHugs. All rights reserved.
@@ -304,113 +228,74 @@
 </footer>
 
 
-
-<!-- LOAD PRODUCT DATABASE -->
-
 <script src="products.js"></script>
 
 
-
-<!-- WEBSITE SYSTEM -->
-
 <script>
 
-
-/* ==============================
-   DISPLAY PRODUCTS
-================================ */
-
 function displayProducts(productArray) {
-
 
   const productList =
     document.getElementById("product-list");
 
-
   productList.innerHTML = "";
 
 
-
   productArray.forEach(function(product) {
-
-
-    /*
-    Find actual position of product
-    inside main products database.
-    */
 
     const productIndex =
       products.indexOf(product);
 
 
-
-    /* IMAGE */
-
     let imageHTML;
-
 
     if (product.image) {
 
       imageHTML = `
-
         <img
           class="product-image"
           src="${product.image}"
           alt="${product.name}"
         >
-
       `;
 
     } else {
 
       imageHTML = `
-
         <div class="placeholder">
           Product photo coming soon
         </div>
-
       `;
 
     }
 
 
-
-    /* SIZE OPTIONS */
-
     let sizeOptions = `
-
       <option value="">
         Select Size
       </option>
-
     `;
-
 
 
     product.sizes.forEach(function(item) {
 
-
       if (item.available === true) {
 
         sizeOptions += `
-
           <option value="${item.size}">
             ${item.size}
           </option>
-
         `;
 
       } else {
 
         sizeOptions += `
-
           <option
             value="${item.size}"
             disabled
           >
             ${item.size} — SOLD OUT
           </option>
-
         `;
 
       }
@@ -418,29 +303,21 @@ function displayProducts(productArray) {
     });
 
 
-
-    /* CREATE PRODUCT CARD */
-
     const productCard = `
 
       <article class="card">
 
-
         ${imageHTML}
 
-
         <div class="product-info">
-
 
           <h3>
             ${product.name}
           </h3>
 
-
           <p class="price">
             RM${product.price}
           </p>
-
 
           <label
             class="size-label"
@@ -449,16 +326,12 @@ function displayProducts(productArray) {
             Choose Size
           </label>
 
-
           <select
             id="size-${productIndex}"
             class="size-select"
           >
-
             ${sizeOptions}
-
           </select>
-
 
           <button
             class="buy-button"
@@ -468,12 +341,9 @@ function displayProducts(productArray) {
             BUY NOW
           </button>
 
-
         </div>
 
-
       </article>
-
     `;
 
 
@@ -482,19 +352,12 @@ function displayProducts(productArray) {
       productCard
     );
 
-
   });
 
 }
 
 
-
-/* ==============================
-   SEARCH PRODUCTS
-================================ */
-
 function searchProducts() {
-
 
   const searchText =
     document
@@ -504,34 +367,22 @@ function searchProducts() {
       .toLowerCase();
 
 
-
   const filteredProducts =
     products.filter(function(product) {
-
 
       return product.name
         .toLowerCase()
         .includes(searchText);
 
-
     });
 
 
-
-  displayProducts(
-    filteredProducts
-  );
+  displayProducts(filteredProducts);
 
 }
 
 
-
-/* ==============================
-   BUY NOW
-================================ */
-
 function orderProduct(productIndex) {
-
 
   const product =
     products[productIndex];
@@ -539,14 +390,10 @@ function orderProduct(productIndex) {
 
   if (!product) {
 
-    alert(
-      "Product not found. Please refresh the page."
-    );
+    alert("Product not found. Please refresh the page.");
 
     return;
-
   }
-
 
 
   const sizeBox =
@@ -555,63 +402,34 @@ function orderProduct(productIndex) {
     );
 
 
-
   if (!sizeBox) {
 
-    alert(
-      "Please refresh the page and try again."
-    );
+    alert("Please refresh the page and try again.");
 
     return;
-
   }
-
 
 
   const selectedSize =
     sizeBox.value;
 
 
-
   if (selectedSize === "") {
 
-    alert(
-      "Please select a size first."
-    );
+    alert("Please select a size first.");
 
     return;
-
   }
 
 
-
-  /* ORDER MESSAGE */
-
   const message =
-
     "Hi FirstHugs! 🧸\n\n" +
-
     "Saya nak order:\n\n" +
-
-    "Item: " +
-    product.name +
-    "\n" +
-
-    "Price: RM" +
-    product.price +
-    "\n" +
-
-    "Size: " +
-    selectedSize +
-    "\n\n" +
-
+    "Item: " + product.name + "\n" +
+    "Price: RM" + product.price + "\n" +
+    "Size: " + selectedSize + "\n\n" +
     "Boleh check availability?";
 
-
-
-  /*
-  Copy message as backup
-  */
 
   if (
     navigator.clipboard &&
@@ -621,25 +439,15 @@ function orderProduct(productIndex) {
     navigator.clipboard
       .writeText(message)
       .catch(function() {
-
-        console.log(
-          "Clipboard unavailable"
-        );
-
+        console.log("Clipboard unavailable");
       });
 
   }
 
 
-
-  /* OPEN TELEGRAM */
-
   const telegramLink =
-
     "https://t.me/firsthugsAin?text=" +
-
     encodeURIComponent(message);
-
 
 
   window.open(
@@ -650,11 +458,6 @@ function orderProduct(productIndex) {
 }
 
 
-
-/* ==============================
-   SEARCH LISTENER
-================================ */
-
 document
   .getElementById("product-search")
   .addEventListener(
@@ -663,17 +466,9 @@ document
   );
 
 
-
-/* ==============================
-   START WEBSITE
-================================ */
-
 displayProducts(products);
-
 
 </script>
 
-
 </body>
-
 </html>
