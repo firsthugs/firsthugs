@@ -31,7 +31,7 @@ const products = [
   {
     name: "Mint Top and Pants",
     price: 135,
-    image: "mint.jpg",
+    image: "mint set.jpeg",
 
     sizes: [
       { size: "1.5-2Y", available: true },
