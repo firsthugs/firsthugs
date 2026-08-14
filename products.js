@@ -37,6 +37,17 @@ const products = [
       { size: "1.5-2Y", available: true },
       { size: "6-9M", available: false }
     ]
-  }
+  },
 
+  {
+    name: "Neutral Stripe Top and Pants",
+    price: 112,
+    image: "brown set.jpeg",
+
+    sizes: [
+      { size: "1.5-2Y", available: true },
+      { size: "6-9M", available: false }
+    ]
+  }
+  
 ];
