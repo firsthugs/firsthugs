@@ -26,6 +26,17 @@ const products = [
       { size: "1.5-2Y", available: true },
       { size: "6-9M", available: false }
     ]
+  },
+
+  {
+    name: "Mint Top and Pants",
+    price: 135,
+    image: "mint.jpg",
+
+    sizes: [
+      { size: "1.5-2Y", available: true },
+      { size: "6-9M", available: false }
+    ]
   }
 
 ];
