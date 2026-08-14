@@ -56,8 +56,8 @@ const products = [
 
   {
     name: "Neutral Embroidered Top abd Pants",
-    price: 125,
-    image: "mesh-dress.webp",
+    price: RM 125,
+    image: "set.jpg",
 
     sizes: [
       { size: "1.5-2y", available: true },
