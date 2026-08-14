@@ -26,31 +26,47 @@ const products = [
 
       {
         size: "12-18M",
-        available: true
+        available: false
       },
 
       {
         size: "1.5-2Y",
-        available: true
+        available: false
       },
 
       {
         size: "2-3Y",
-        available: true
+        available: false
       },
 
       {
         size: "3-4Y",
-        available: true
+        available: false
       },
 
       {
         size: "4-5Y",
-        available: true
+        available: false
       }
 
     ]
 
-  }
+  },
+  const products = [
+
+  {
+    name: "Neutral Embroidered Top abd Pants",
+    price: 125,
+    image: "mesh-dress.webp",
+
+    sizes: [
+      { size: "1.5-2y", available: true },
+      { size: "6-9M", available: false }
+    ]
+  },
+
+ 
+
+];
 
 ];
