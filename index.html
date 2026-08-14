@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
 <header class="top">
@@ -60,7 +61,10 @@
       thoughtfully selected by FirstHugs.
     </p>
 
-    <a class="main-button" href="#products">
+    <a
+      class="main-button"
+      href="#products"
+    >
       SHOP COLLECTION
     </a>
 
@@ -144,7 +148,9 @@
 
     <div class="info-card">
 
-      <h3>Shipping</h3>
+      <h3>
+        Shipping
+      </h3>
 
       <p>
         Delivery charges and estimated delivery time
@@ -157,9 +163,12 @@
 
     </div>
 
+
     <div class="info-card">
 
-      <h3>Returns</h3>
+      <h3>
+        Returns
+      </h3>
 
       <p>
         Please contact FirstHugs promptly if you receive
@@ -217,9 +226,13 @@
 
 <footer>
 
-  <strong>FirstHugs</strong>
+  <strong>
+    FirstHugs
+  </strong>
 
-  <p>Baby Clothes</p>
+  <p>
+    Baby Clothes
+  </p>
 
   <small>
     © 2026 FirstHugs. All rights reserved.
@@ -247,7 +260,7 @@ function displayProducts(productArray) {
       products.indexOf(product);
 
 
-    let imageHTML;
+    let imageHTML = "";
 
     if (product.image) {
 
@@ -266,7 +279,6 @@ function displayProducts(productArray) {
           Product photo coming soon
         </div>
       `;
-
     }
 
 
@@ -287,20 +299,36 @@ function displayProducts(productArray) {
           </option>
         `;
 
-      } else {
-
-        sizeOptions += `
-          <option
-            value="${item.size}"
-            disabled
-          >
-            ${item.size} — SOLD OUT
-          </option>
-        `;
-
       }
 
     });
+
+
+    const hasAvailableSize =
+      product.sizes.some(function(item) {
+        return item.available === true;
+      });
+
+
+    const buttonHTML = hasAvailableSize
+      ? `
+        <button
+          class="buy-button"
+          type="button"
+          onclick="orderProduct(${productIndex})"
+        >
+          BUY NOW
+        </button>
+      `
+      : `
+        <button
+          class="buy-button sold-out-button"
+          type="button"
+          disabled
+        >
+          SOLD OUT
+        </button>
+      `;
 
 
     const productCard = `
@@ -329,17 +357,14 @@ function displayProducts(productArray) {
           <select
             id="size-${productIndex}"
             class="size-select"
+            ${hasAvailableSize ? "" : "disabled"}
           >
+
             ${sizeOptions}
+
           </select>
 
-          <button
-            class="buy-button"
-            type="button"
-            onclick="orderProduct(${productIndex})"
-          >
-            BUY NOW
-          </button>
+          ${buttonHTML}
 
         </div>
 
@@ -390,7 +415,9 @@ function orderProduct(productIndex) {
 
   if (!product) {
 
-    alert("Product not found. Please refresh the page.");
+    alert(
+      "Product not found. Please refresh the page."
+    );
 
     return;
   }
@@ -402,21 +429,15 @@ function orderProduct(productIndex) {
     );
 
 
-  if (!sizeBox) {
-
-    alert("Please refresh the page and try again.");
-
-    return;
-  }
-
-
   const selectedSize =
     sizeBox.value;
 
 
   if (selectedSize === "") {
 
-    alert("Please select a size first.");
+    alert(
+      "Please select a size first."
+    );
 
     return;
   }
@@ -429,20 +450,6 @@ function orderProduct(productIndex) {
     "Price: RM" + product.price + "\n" +
     "Size: " + selectedSize + "\n\n" +
     "Boleh check availability?";
-
-
-  if (
-    navigator.clipboard &&
-    window.isSecureContext
-  ) {
-
-    navigator.clipboard
-      .writeText(message)
-      .catch(function() {
-        console.log("Clipboard unavailable");
-      });
-
-  }
 
 
   const telegramLink =
@@ -469,6 +476,7 @@ document
 displayProducts(products);
 
 </script>
+
 
 </body>
 </html>
