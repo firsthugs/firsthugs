@@ -70,6 +70,17 @@ const products = [
       { size: "9-12m", available: false },
       { size: "6-9M", available: true }
     ]
+  },
+
+  {
+    name: "(PRELOVED) Dusty Blue Tafetta Dress",
+    price: 78,
+    image: "tafetta.png",
+
+    sizes: [
+      { size: "9-12m", available: false },
+      { size: "12-18m", available: true }
+    ]
   }
   
 ];
