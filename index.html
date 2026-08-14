@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -16,38 +17,73 @@
     content="FirstHugs Baby Clothes - adorable and comfortable outfits for your little ones."
   >
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
 </head>
+
 
 <body>
 
+
+<!-- HEADER -->
+
 <header class="top">
 
-  <a class="brand" href="#home">
+  <a
+    class="brand"
+    href="#home"
+  >
+
     <img
       src="firsthugs-logo.jpeg"
-      alt="FirstHugs Baby Clothes Logo"
+      alt="FirstHugs"
     >
+
   </a>
 
+
   <nav>
-    <a href="#home">Home</a>
-    <a href="#products">Products</a>
-    <a href="#about">About</a>
-    <a href="#shipping">Shipping</a>
-    <a href="#contact">Contact</a>
+
+    <a href="#home">
+      Home
+    </a>
+
+    <a href="#products">
+      Products
+    </a>
+
+    <a href="#about">
+      About
+    </a>
+
+    <a href="#shipping">
+      Shipping
+    </a>
+
+    <a href="#contact">
+      Contact
+    </a>
+
   </nav>
 
 </header>
 
 
+
 <main>
+
 
 <!-- HOME -->
 
-<section class="hero" id="home">
+<section
+  class="hero"
+  id="home"
+>
 
-  <div class="hero-text">
+  <div>
 
     <p class="eyebrow">
       BABY CLOTHING
@@ -62,28 +98,32 @@
       thoughtfully selected by FirstHugs.
     </p>
 
-    <a class="button" href="#products">
+    <a
+      class="main-button"
+      href="#products"
+    >
       SHOP COLLECTION
     </a>
 
   </div>
 
 
-  <div class="hero-logo">
-
-    <img
-      src="firsthugs-logo.jpeg"
-      alt="FirstHugs Baby Clothes"
-    >
-
-  </div>
+  <img
+    class="hero-logo"
+    src="firsthugs-logo.jpeg"
+    alt="FirstHugs Baby Clothes"
+  >
 
 </section>
 
 
+
 <!-- PRODUCTS -->
 
-<section id="products" class="section">
+<section
+  id="products"
+  class="section"
+>
 
   <p class="eyebrow">
     OUR COLLECTION
@@ -94,213 +134,31 @@
   </h2>
 
 
-  <div class="products">
+  <!-- SEARCH -->
 
+  <div class="search-area">
 
-    <!-- MESH DRESS -->
-
-    <article class="card">
-
-      <img
-        class="product-image"
-        src="mesh-dress.webp"
-        alt="FirstHugs Mesh Dress"
-      >
-
-      <div class="product-info">
-
-        <h3>
-          Cream Ebroidered Mesh Dress
-        </h3>
-
-        <p class="price">
-          RM 150
-        </p>
-
-
-        <label
-          class="size-label"
-          for="mesh-size"
-        >
-          Choose Size
-        </label>
-
-
-        <select
-          id="mesh-size"
-          class="size-select"
-        >
-
-          <option value="">
-            Select Size
-          </option>
-
-          <option value="3-6M" disabled>
-            3-6M — SOLD OUT
-          </option>
-
-          <option value="6-9M" disabled>
-            6-9M — SOLD OUT
-          </option>
-
-          <option value="9-12M">
-            9-12M
-          </option>
-
-          <option value="12-18M" disabled>
-            12-18M — SOLD OUT
-          </option>
-
-          <option value="1.5-2Y" disabled>
-            1.5-2Y — SOLD OUT
-          </option>
-
-          <option value="2-3Y" disabled>
-            2-3Y — SOLD OUT
-          </option>
-
-          <option value="3-4Y" disabled>
-            3-4Y — SOLD OUT
-          </option>
-
-          <option value="4-5Y" disabled>
-            4-5Y — SOLD OUT
-          </option>
-
-        </select>
-
-
-        <button
-          class="buy-button"
-          onclick="orderMeshDress()"
-        >
-          BUY NOW
-        </button>
-
-      </div>
-
-    </article>
-
-
-
-    <!-- BABY SLEEPSUIT -->
-
-    <article class="card">
-
-      <img
-        class="product-image"
-        src="set.jpg"
-        alt="FirstHugs Neutral Embroidered Top and Pants"
-      >
-
-      <div class="product-info">
-
-        <h3>
-         Neutral Embroidered Top and Pants
-        </h3>
-
-        <p class="price">
-          RM 125
-        </p>
-
-        <label
-          class="size-label"
-          for="neutral embroidered top and pants-size"
-        >
-          Choose Size
-        </label>
-
-
-        <select
-          id="neutral embroidered top and pants-size"
-          class="size-select"
-        >
-
-          <option value="">
-            Select Size
-          </option>
-
-          <option value="3-6M" disabled>
-            3-6M — SOLD OUT
-          </option>
-
-          <option value="6-9M" disabled>
-            6-9M — SOLD OUT
-          </option>
-
-          <option value="9-12M" disabled>
-            9-12M — SOLD OUT
-          </option>
-
-          <option value="12-18M" disabled>
-            12-18M — SOLD OUT
-          </option>
-
-          <option value="1.5-2Y" >
-            1.5-2Y 
-          </option>
-
-          <option value="2-3Y" disabled>
-            2-3Y — SOLD OUT
-          </option>
-
-          <option value="3-4Y" disabled>
-            3-4Y — SOLD OUT
-          </option>
-
-          <option value="4-5Y" disabled>
-            4-5Y — SOLD OUT
-          </option>
-
-        </select>
-        <button
-          class="buy-button"
-          onclick="orderProduct('Neutral Embroidered Top and Pants', 'RM 125')"
-        >
-          BUY NOW
-        </button>
-
-      </div>
-
-    </article>
-
-
-
-    <!-- CO-ORD SET -->
-
-    <article class="card">
-
-      <div class="placeholder">
-        Product photo coming soon
-      </div>
-
-      <div class="product-info">
-
-        <h3>
-          Co-ord Set
-        </h3>
-
-        <p class="price">
-          RM78
-        </p>
-
-        <button
-          class="buy-button"
-          onclick="orderProduct('Co-ord Set', 'RM78')"
-        >
-          BUY NOW
-        </button>
-
-      </div>
-
-    </article>
+    <input
+      type="search"
+      id="product-search"
+      placeholder="Search products..."
+      oninput="searchProducts()"
+    >
 
   </div>
 
 
+  <!-- PRODUCTS AUTO APPEAR HERE -->
+
+  <div
+    id="product-list"
+    class="products"
+  ></div>
+
+
   <p class="note">
-    Please contact FirstHugs to confirm
-    product availability before payment.
+    Please select your preferred size
+    before placing an order.
   </p>
 
 </section>
@@ -309,7 +167,10 @@
 
 <!-- ABOUT -->
 
-<section id="about" class="section soft">
+<section
+  id="about"
+  class="section soft"
+>
 
   <p class="eyebrow">
     ABOUT US
@@ -336,7 +197,10 @@
 
 <!-- SHIPPING -->
 
-<section id="shipping" class="section">
+<section
+  id="shipping"
+  class="section"
+>
 
   <p class="eyebrow">
     SHOPPING INFO
@@ -362,7 +226,7 @@
       </p>
 
       <p>
-        Orders will be processed after
+        Orders are processed after
         payment confirmation.
       </p>
 
@@ -397,7 +261,10 @@
 
 <!-- CONTACT -->
 
-<section id="contact" class="section contact">
+<section
+  id="contact"
+  class="section contact"
+>
 
   <p class="eyebrow">
     CONTACT
@@ -423,17 +290,23 @@
     OPEN TELEGRAM
   </a>
 
+
   <p class="small">
+
     Please confirm product availability,
-    size, delivery fee and final order
-    total before making payment.
+    size, delivery fee and final order total
+    before making payment.
+
   </p>
 
 </section>
 
+
 </main>
 
 
+
+<!-- FOOTER -->
 
 <footer>
 
@@ -441,81 +314,279 @@
     FirstHugs
   </strong>
 
-  <span>
-    Baby Clothes
-  </span>
-
   <p>
-    © 2026 FirstHugs. All rights reserved.
+    Baby Clothes
   </p>
+
+  <small>
+    © 2026 FirstHugs. All rights reserved.
+  </small>
 
 </footer>
 
 
 
+<!-- PRODUCT DATABASE -->
+
+<script src="products.js"></script>
+
+
+
+<!-- WEBSITE SYSTEM -->
+
 <script>
 
-/* MESH DRESS ORDER */
 
-function orderMeshDress() {
+/* =========================
+   SHOW PRODUCTS
+========================= */
+
+function displayProducts(productArray) {
+
+  const productList =
+    document.getElementById("product-list");
+
+
+  productList.innerHTML = "";
+
+
+  productArray.forEach((product, index) => {
+
+
+    /* PRODUCT IMAGE */
+
+    let imageHTML;
+
+
+    if (product.image) {
+
+      imageHTML = `
+        <img
+          class="product-image"
+          src="${product.image}"
+          alt="${product.name}"
+        >
+      `;
+
+    } else {
+
+      imageHTML = `
+        <div class="placeholder">
+          Product photo coming soon
+        </div>
+      `;
+
+    }
+
+
+
+    /* SIZE OPTIONS */
+
+    let sizeOptions = `
+      <option value="">
+        Select Size
+      </option>
+    `;
+
+
+    product.sizes.forEach(item => {
+
+
+      if (item.available) {
+
+        sizeOptions += `
+          <option value="${item.size}">
+            ${item.size}
+          </option>
+        `;
+
+      } else {
+
+        sizeOptions += `
+          <option
+            value="${item.size}"
+            disabled
+          >
+            ${item.size} — SOLD OUT
+          </option>
+        `;
+
+      }
+
+    });
+
+
+
+    /* PRODUCT CARD */
+
+    productList.innerHTML += `
+
+      <article class="card">
+
+
+        ${imageHTML}
+
+
+        <div class="product-info">
+
+
+          <h3>
+            ${product.name}
+          </h3>
+
+
+          <p class="price">
+            RM${product.price}
+          </p>
+
+
+          <label class="size-label">
+            Choose Size
+          </label>
+
+
+          <select
+            id="size-${index}"
+            class="size-select"
+          >
+
+            ${sizeOptions}
+
+          </select>
+
+
+          <button
+            class="buy-button"
+            onclick="orderProduct(${index})"
+          >
+
+            BUY NOW
+
+          </button>
+
+
+        </div>
+
+      </article>
+
+    `;
+
+  });
+
+}
+
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function searchProducts() {
+
+  const search =
+    document
+      .getElementById("product-search")
+      .value
+      .toLowerCase();
+
+
+  const filtered =
+    products.filter(product =>
+
+      product.name
+        .toLowerCase()
+        .includes(search)
+
+    );
+
+
+  displayProducts(filtered);
+
+}
+
+
+
+/* =========================
+   ORDER
+========================= */
+
+function orderProduct(index) {
+
+
+  const product =
+    products[index];
+
 
   const size =
-    document.getElementById("mesh-size").value;
+    document
+      .getElementById(`size-${index}`)
+      .value;
 
-  if (size === "") {
 
-    alert("Please select a size first.");
+  if (!size) {
+
+    alert(
+      "Please select a size first."
+    );
 
     return;
+
   }
 
-  const message =
-    "Hi FirstHugs! 🧸\n\n" +
-    "Saya nak order:\n" +
-    "Item: Mesh Dress\n" +
-    "Price: RM150\n" +
-    "Size: " + size + "\n\n" +
-    "Boleh check availability?";
-
-  openTelegram(message);
-}
-
-
-/* OTHER PRODUCT ORDER */
-
-function orderProduct(product, price) {
 
   const message =
+
     "Hi FirstHugs! 🧸\n\n" +
+
     "Saya nak order:\n" +
-    "Item: " + product + "\n" +
-    "Price: " + price + "\n\n" +
+
+    "Item: " +
+    product.name +
+    "\n" +
+
+    "Price: RM" +
+    product.price +
+    "\n" +
+
+    "Size: " +
+    size +
+    "\n\n" +
+
     "Boleh check availability?";
 
-  openTelegram(message);
-}
 
-
-/* OPEN TELEGRAM */
-
-function openTelegram(message) {
 
   if (navigator.clipboard) {
 
     navigator.clipboard
       .writeText(message)
       .catch(function() {});
+
   }
 
-  const telegramLink =
+
+  const telegram =
+
     "https://t.me/firsthugsAin?text=" +
+
     encodeURIComponent(message);
 
+
   window.open(
-    telegramLink,
+    telegram,
     "_blank"
   );
+
 }
+
+
+
+/* =========================
+   START WEBSITE
+========================= */
+
+displayProducts(products);
+
 
 </script>
 
