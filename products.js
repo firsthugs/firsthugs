@@ -29,7 +29,7 @@ const products = [
   },
 
   {
-    name: "Mint Top and Pants",
+    name: "Mint Green Top and Pants",
     price: 135,
     image: "mint set.jpeg",
 
