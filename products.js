@@ -59,6 +59,17 @@ const products = [
       { size: "9-12m", available: true },
       { size: "6-9M", available: false }
     ]
+  },
+
+  {
+    name: "(PRELOVED) Denim Embroidered Dungaree",
+    price: 59,
+    image: "dungaree.png",
+
+    sizes: [
+      { size: "9-12m", available: false },
+      { size: "6-9M", available: true }
+    ]
   }
   
 ];
