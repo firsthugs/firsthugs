@@ -1,482 +1,356 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>FirstHugs | Baby Clothes</title>
-
-  <meta
-    name="description"
-    content="FirstHugs Baby Clothes - adorable and comfortable outfits for your little ones."
-  >
-
-  <link rel="stylesheet" href="style.css">
-</head>
-
-
-<body>
-
-<header class="top">
-
-  <a class="brand" href="#home">
-    <img
-      src="firsthugs-logo.jpeg"
-      alt="FirstHugs Baby Clothes Logo"
-    >
-  </a>
-
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#products">Products</a>
-    <a href="#about">About</a>
-    <a href="#shipping">Shipping</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-</header>
-
-
-<main>
-
-<section class="hero" id="home">
-
-  <div class="hero-text">
-
-    <p class="eyebrow">
-      BABY CLOTHING
-    </p>
-
-    <h1>
-      Little outfits for your little love.
-    </h1>
-
-    <p>
-      Comfortable and adorable baby clothes,
-      thoughtfully selected by FirstHugs.
-    </p>
-
-    <a
-      class="main-button"
-      href="#products"
-    >
-      SHOP COLLECTION
-    </a>
-
-  </div>
-
-  <img
-    class="hero-logo"
-    src="firsthugs-logo.jpeg"
-    alt="FirstHugs Baby Clothes"
-  >
-
-</section>
-
-
-<section id="products" class="section">
-
-  <p class="eyebrow">
-    OUR COLLECTION
-  </p>
-
-  <h2>
-    FirstHugs Favourites
-  </h2>
-
-  <div class="search-area">
-
-    <input
-      type="search"
-      id="product-search"
-      placeholder="Search products..."
-    >
-
-  </div>
-
-  <div
-    id="product-list"
-    class="products"
-  ></div>
-
-  <p class="note">
-    Select your preferred size before placing an order.
-  </p>
-
-</section>
-
-
-<section id="about" class="section soft">
-
-  <p class="eyebrow">
-    ABOUT US
-  </p>
-
-  <h2>
-    Welcome to FirstHugs
-  </h2>
-
-  <p>
-    FirstHugs offers cute and comfortable
-    clothing for babies and little ones.
-  </p>
-
-  <p>
-    We believe every little moment deserves
-    something soft, lovely and made for tiny adventures.
-  </p>
-
-</section>
-
-
-<section id="shipping" class="section">
-
-  <p class="eyebrow">
-    SHOPPING INFO
-  </p>
-
-  <h2>
-    Shipping & Returns
-  </h2>
-
-  <div class="info-grid">
-
-    <div class="info-card">
-
-      <h3>
-        Shipping
-      </h3>
-
-      <p>
-        Delivery charges and estimated delivery time
-        will be confirmed before payment.
-      </p>
-
-      <p>
-        Orders are processed after payment confirmation.
-      </p>
-
-    </div>
-
-
-    <div class="info-card">
-
-      <h3>
-        Returns
-      </h3>
-
-      <p>
-        Please contact FirstHugs promptly if you receive
-        an incorrect or defective item.
-      </p>
-
-      <p>
-        Return eligibility is subject to the condition
-        of the item and order details.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section id="contact" class="section contact">
-
-  <p class="eyebrow">
-    CONTACT
-  </p>
-
-  <h2>
-    Ready to order?
-  </h2>
-
-  <p>
-    Contact FirstHugs via Telegram.
-  </p>
-
-  <p class="contact-number">
-    @firsthugsAin
-  </p>
-
-  <a
-    class="telegram-button"
-    href="https://t.me/firsthugsAin"
-    target="_blank"
-  >
-    OPEN TELEGRAM
-  </a>
-
-  <p class="small">
-    Please confirm product availability,
-    size, delivery fee and final order total
-    before making payment.
-  </p>
-
-</section>
-
-</main>
-
-
-<footer>
-
-  <strong>
-    FirstHugs
-  </strong>
-
-  <p>
-    Baby Clothes
-  </p>
-
-  <small>
-    © 2026 FirstHugs. All rights reserved.
-  </small>
-
-</footer>
-
-
-<script src="products.js"></script>
-
-
-<script>
-
-function displayProducts(productArray) {
-
-  const productList =
-    document.getElementById("product-list");
-
-  productList.innerHTML = "";
-
-
-  productArray.forEach(function(product) {
-
-    const productIndex =
-      products.indexOf(product);
-
-
-    let imageHTML = "";
-
-    if (product.image) {
-
-      imageHTML = `
-        <img
-          class="product-image"
-          src="${product.image}"
-          alt="${product.name}"
-        >
-      `;
-
-    } else {
-
-      imageHTML = `
-        <div class="placeholder">
-          Product photo coming soon
-        </div>
-      `;
-    }
-
-
-    let sizeOptions = `
-      <option value="">
-        Select Size
-      </option>
-    `;
-
-
-    product.sizes.forEach(function(item) {
-
-      if (item.available === true) {
-
-        sizeOptions += `
-          <option value="${item.size}">
-            ${item.size}
-          </option>
-        `;
-
-      }
-
-    });
-
-
-    const hasAvailableSize =
-      product.sizes.some(function(item) {
-        return item.available === true;
-      });
-
-
-    const buttonHTML = hasAvailableSize
-      ? `
-        <button
-          class="buy-button"
-          type="button"
-          onclick="orderProduct(${productIndex})"
-        >
-          BUY NOW
-        </button>
-      `
-      : `
-        <button
-          class="buy-button sold-out-button"
-          type="button"
-          disabled
-        >
-          SOLD OUT
-        </button>
-      `;
-
-
-    const productCard = `
-
-      <article class="card">
-
-        ${imageHTML}
-
-        <div class="product-info">
-
-          <h3>
-            ${product.name}
-          </h3>
-
-          <p class="price">
-            RM${product.price}
-          </p>
-
-          <label
-            class="size-label"
-            for="size-${productIndex}"
-          >
-            Choose Size
-          </label>
-
-          <select
-            id="size-${productIndex}"
-            class="size-select"
-            ${hasAvailableSize ? "" : "disabled"}
-          >
-
-            ${sizeOptions}
-
-          </select>
-
-          ${buttonHTML}
-
-        </div>
-
-      </article>
-    `;
-
-
-    productList.insertAdjacentHTML(
-      "beforeend",
-      productCard
-    );
-
-  });
-
+* {
+  box-sizing: border-box;
 }
 
-
-function searchProducts() {
-
-  const searchText =
-    document
-      .getElementById("product-search")
-      .value
-      .trim()
-      .toLowerCase();
-
-
-  const filteredProducts =
-    products.filter(function(product) {
-
-      return product.name
-        .toLowerCase()
-        .includes(searchText);
-
-    });
-
-
-  displayProducts(filteredProducts);
-
+html {
+  scroll-behavior: smooth;
 }
 
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #4a332d;
+  background: #fffdf9;
+  line-height: 1.6;
+}
 
-function orderProduct(productIndex) {
+button,
+input,
+select {
+  font-family: inherit;
+}
 
-  const product =
-    products[productIndex];
+/* HEADER */
 
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 7%;
+  background: rgba(255, 253, 249, 0.97);
+  border-bottom: 1px solid #f1dfd5;
+}
 
-  if (!product) {
+.brand img {
+  display: block;
+  width: 92px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 12px;
+}
 
-    alert(
-      "Product not found. Please refresh the page."
-    );
+.top nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
 
-    return;
+.top nav a {
+  color: #4a332d;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* HERO */
+
+.hero {
+  min-height: 72vh;
+  padding: 70px 8%;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: 50px;
+  background: linear-gradient(135deg, #fff9f3, #fbe8dc);
+}
+
+.hero h1 {
+  max-width: 800px;
+  margin: 10px 0 20px;
+  font-size: clamp(42px, 7vw, 78px);
+  line-height: 1.02;
+}
+
+.hero p {
+  max-width: 620px;
+  font-size: 18px;
+}
+
+.hero-logo {
+  width: 100%;
+  max-width: 430px;
+  border-radius: 34px;
+  box-shadow: 0 18px 50px rgba(93, 54, 43, 0.12);
+}
+
+.eyebrow {
+  color: #d86f55;
+  font-size: 12px !important;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.main-button {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 13px 22px;
+  background: #d86f55;
+  color: white;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+/* SECTIONS */
+
+.section {
+  max-width: 1250px;
+  margin: auto;
+  padding: 75px 8%;
+}
+
+.section h2 {
+  margin: 4px 0 28px;
+  font-size: 38px;
+}
+
+/* SEARCH */
+
+.search-area {
+  margin-bottom: 30px;
+}
+
+#product-search {
+  width: 100%;
+  max-width: 500px;
+  padding: 15px 18px;
+  border: 1px solid #e4c8bb;
+  border-radius: 999px;
+  background: white;
+  color: #4a332d;
+  font-size: 16px;
+  outline: none;
+}
+
+/* PRODUCTS */
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.card {
+  overflow: hidden;
+  padding: 16px;
+  background: white;
+  border: 1px solid #f0ded4;
+  border-radius: 22px;
+  box-shadow: 0 8px 28px rgba(80, 50, 40, 0.06);
+}
+
+.product-image {
+  display: block;
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 15px;
+}
+
+.placeholder {
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #f9e8df;
+  color: #a06b5d;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.card h3 {
+  margin: 16px 0 0;
+  font-size: 21px;
+}
+
+.price {
+  margin: 4px 0 12px;
+  color: #d86f55;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.size-label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.size-select {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 13px 14px;
+  border: 1px solid #e4c8bb;
+  border-radius: 12px;
+  background: white;
+  color: #4a332d;
+  font-size: 15px;
+}
+
+.buy-button {
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 999px;
+  background: #d86f55;
+  color: white;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.sold-out-button {
+  background: #c8b4ac;
+  cursor: not-allowed;
+}
+
+/* ABOUT */
+
+.soft {
+  max-width: none;
+  background: #fff3eb;
+}
+
+.soft p {
+  max-width: 760px;
+}
+
+/* SHIPPING */
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.info-card {
+  padding: 24px;
+  background: white;
+  border: 1px solid #f0ded4;
+  border-radius: 18px;
+}
+
+/* CONTACT */
+
+.contact {
+  text-align: center;
+}
+
+.contact-number {
+  color: #d86f55;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.telegram-button {
+  display: inline-block;
+  padding: 14px 25px;
+  background: #d86f55;
+  color: white;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.small,
+.note {
+  color: #775f58;
+  font-size: 13px;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 35px;
+  background: #4a332d;
+  color: #fff3eb;
+  text-align: center;
+}
+
+footer strong {
+  display: block;
+  font-size: 20px;
+}
+
+footer p {
+  margin: 3px;
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* PHONE */
+
+@media (max-width: 760px) {
+  .top {
+    align-items: flex-start;
+    padding: 12px 5%;
   }
 
-
-  const sizeBox =
-    document.getElementById(
-      "size-" + productIndex
-    );
-
-
-  const selectedSize =
-    sizeBox.value;
-
-
-  if (selectedSize === "") {
-
-    alert(
-      "Please select a size first."
-    );
-
-    return;
+  .brand img {
+    width: 70px;
+    height: 52px;
   }
 
+  .top nav {
+    max-width: 230px;
+    gap: 8px 12px;
+    justify-content: flex-end;
+  }
 
-  const message =
-    "Hi FirstHugs! 🧸\n\n" +
-    "Saya nak order:\n\n" +
-    "Item: " + product.name + "\n" +
-    "Price: RM" + product.price + "\n" +
-    "Size: " + selectedSize + "\n\n" +
-    "Boleh check availability?";
+  .top nav a {
+    font-size: 11px;
+  }
 
+  .hero {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    padding: 50px 7%;
+  }
 
-  const telegramLink =
-    "https://t.me/firsthugsAin?text=" +
-    encodeURIComponent(message);
+  .hero-logo {
+    max-width: 280px;
+  }
 
+  .products {
+    grid-template-columns: 1fr;
+  }
 
-  window.open(
-    telegramLink,
-    "_blank"
-  );
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
 
+  .section {
+    padding: 55px 7%;
+  }
+
+  .section h2 {
+    font-size: 31px;
+  }
+
+  .product-image,
+  .placeholder {
+    height: 400px;
+  }
 }
-
-
-document
-  .getElementById("product-search")
-  .addEventListener(
-    "input",
-    searchProducts
-  );
-
-
-displayProducts(products);
-
-</script>
-
-
-</body>
-</html>
