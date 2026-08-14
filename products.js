@@ -103,6 +103,17 @@ const products = [
       { size: "9-12m", available: true },
       { size: "12-18m", available: false }
     ]
+  },
+
+  {
+    name: "(PRELOVED) Pink Rainbow Party Dress",
+    price: 65,
+    image: "pink dress.png",
+
+    sizes: [
+      { size: "6-9m", available: true },
+      { size: "12-18m", available: false }
+    ]
   }
   
 ];
