@@ -92,6 +92,17 @@ const products = [
       { size: "9-12m", available: false },
       { size: "12-18m", available: true }
     ]
+  },
+
+  {
+    name: "(PRELOVED) Ochre Yellow/Orange Floral Dress",
+    price: 78,
+    image: "orange dress.png",
+
+    sizes: [
+      { size: "9-12m", available: true },
+      { size: "12-18m", available: false }
+    ]
   }
   
 ];
