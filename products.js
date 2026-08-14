@@ -63,10 +63,6 @@ const products = [
       { size: "1.5-2y", available: true },
       { size: "6-9M", available: false }
     ]
-  },
-
- 
-
-];
+  }
 
 ];
