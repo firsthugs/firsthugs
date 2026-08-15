@@ -164,6 +164,16 @@ const products = [
     sizes: [
       { size: "1.5-2y", available: true }
     ]
+  },
+
+  {
+    name: "Pink/Peach Embroideres Mesh Party Dress",
+    price: 60,
+    image: "peach dress.png",
+
+    sizes: [
+      { size: "6-9m", available: true }
+    ]
   }
   
 ];
