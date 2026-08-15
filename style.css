@@ -21,9 +21,7 @@ select {
 }
 
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 .top {
   position: sticky;
@@ -36,7 +34,7 @@ select {
 
   padding: 14px 7%;
 
-  background: rgba(255, 253, 249, 0.98);
+  background: #fffdf9;
 
   border-bottom: 1px solid #f1dfd5;
 }
@@ -55,7 +53,7 @@ select {
 .top nav {
   display: flex;
 
-  gap: 20px;
+  gap: 18px;
 
   flex-wrap: wrap;
 }
@@ -66,6 +64,7 @@ select {
   text-decoration: none;
 
   font-size: 14px;
+
   font-weight: 700;
 }
 
@@ -74,9 +73,7 @@ select {
 }
 
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero {
   min-height: 72vh;
@@ -137,16 +134,14 @@ select {
 }
 
 
-/* =========================
-   GENERAL
-========================= */
+/* GENERAL */
 
 .eyebrow {
   margin-bottom: 5px;
 
   color: #d86f55;
 
-  font-size: 12px !important;
+  font-size: 12px;
 
   font-weight: 800;
 
@@ -176,9 +171,7 @@ select {
 }
 
 
-/* =========================
-   SECTIONS
-========================= */
+/* SECTIONS */
 
 .section {
   max-width: 1250px;
@@ -194,10 +187,20 @@ select {
   font-size: 38px;
 }
 
+.section-inner {
+  max-width: 1050px;
 
-/* =========================
-   SEARCH
-========================= */
+  margin: auto;
+}
+
+.soft {
+  max-width: none;
+
+  background: #fff3eb;
+}
+
+
+/* SEARCH */
 
 .search-area {
   margin-bottom: 30px;
@@ -216,8 +219,6 @@ select {
 
   background: white;
 
-  color: #4a332d;
-
   font-size: 16px;
 
   outline: none;
@@ -228,9 +229,7 @@ select {
 }
 
 
-/* =========================
-   PRODUCTS
-========================= */
+/* PRODUCTS */
 
 .products {
   display: grid;
@@ -246,8 +245,6 @@ select {
 
   flex-direction: column;
 
-  overflow: hidden;
-
   padding: 16px;
 
   background: white;
@@ -255,6 +252,8 @@ select {
   border: 1px solid #f0ded4;
 
   border-radius: 22px;
+
+  overflow: hidden;
 
   box-shadow:
     0 8px 28px
@@ -270,8 +269,6 @@ select {
 
   object-fit: cover;
 
-  object-position: center;
-
   border-radius: 15px;
 }
 
@@ -281,15 +278,16 @@ select {
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   padding: 20px;
 
   background: #f9e8df;
 
-  color: #a06b5d;
-
   border-radius: 15px;
+
+  color: #a06b5d;
 
   text-align: center;
 }
@@ -319,13 +317,9 @@ select {
 }
 
 
-/* =========================
-   SIZE
-========================= */
+/* SIZE */
 
 .size-label {
-  display: block;
-
   margin-bottom: 5px;
 
   font-size: 14px;
@@ -346,21 +340,11 @@ select {
 
   background: white;
 
-  color: #4a332d;
-
   font-size: 15px;
-
-  outline: none;
-}
-
-.size-select:focus {
-  border-color: #d86f55;
 }
 
 
-/* =========================
-   BUY BUTTON
-========================= */
+/* BUY */
 
 .buy-button {
   width: 100%;
@@ -401,30 +385,7 @@ select {
 }
 
 
-/* =========================
-   ABOUT
-========================= */
-
-.soft {
-  max-width: none;
-
-  background: #fff3eb;
-}
-
-.section-inner {
-  max-width: 1050px;
-
-  margin: auto;
-}
-
-.soft p {
-  max-width: 760px;
-}
-
-
-/* =========================
-   SHIPPING
-========================= */
+/* SHIPPING */
 
 .info-grid {
   display: grid;
@@ -451,21 +412,14 @@ select {
   margin-top: 0;
 
   font-size: 23px;
-
-  color: #4a332d;
 }
 
 .info-card strong {
   color: #d86f55;
 }
 
-
-/* =========================
-   RETURNS
-========================= */
-
 .return-list {
-  margin: 0 0 20px;
+  margin: 0;
 
   padding-left: 20px;
 }
@@ -474,35 +428,40 @@ select {
   margin-bottom: 14px;
 }
 
-.return-list li:last-child {
-  margin-bottom: 0;
+
+/* POLICIES */
+
+.policy-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 25px;
+
+  margin-top: 25px;
 }
 
+.policy-card {
+  padding: 25px;
 
-/* =========================
-   TEXT LINKS
-========================= */
+  background: white;
 
-.text-link {
-  display: inline-block;
+  border: 1px solid #f0ded4;
 
-  margin-top: 10px;
+  border-radius: 18px;
+}
+
+.policy-card h3 {
+  margin-top: 0;
 
   color: #d86f55;
 
-  text-decoration: none;
-
-  font-weight: 800;
-}
-
-.text-link:hover {
-  text-decoration: underline;
+  font-size: 23px;
 }
 
 
-/* =========================
-   CUSTOMER SUPPORT
-========================= */
+/* CUSTOMER SUPPORT */
 
 .contact {
   text-align: center;
@@ -538,12 +497,6 @@ select {
   text-decoration: none;
 
   font-weight: 600;
-
-  overflow-wrap: anywhere;
-}
-
-.support-info a:hover {
-  color: #d86f55;
 }
 
 .telegram-button {
@@ -573,59 +526,8 @@ select {
   font-size: 13px;
 }
 
-.small {
-  margin-top: 18px;
-}
 
-
-/* =========================
-   LEGAL PAGES
-========================= */
-
-.legal-page {
-  max-width: 900px;
-}
-
-.legal-page h1 {
-  margin-top: 5px;
-
-  margin-bottom: 30px;
-
-  font-size: 46px;
-
-  line-height: 1.15;
-}
-
-.legal-page h2 {
-  margin-top: 35px;
-
-  margin-bottom: 10px;
-
-  font-size: 24px;
-}
-
-.legal-page a {
-  color: #d86f55;
-
-  font-weight: 700;
-}
-
-.legal-box {
-  margin-bottom: 25px;
-
-  padding: 25px;
-
-  background: white;
-
-  border: 1px solid #f0ded4;
-
-  border-radius: 18px;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 
 footer {
   padding: 40px 7%;
@@ -651,6 +553,7 @@ footer p {
   display: flex;
 
   justify-content: center;
+
   align-items: center;
 
   flex-wrap: wrap;
@@ -678,14 +581,8 @@ footer p {
   color: #d8bdb2;
 }
 
-footer small {
-  color: #e9d8d1;
-}
 
-
-/* =========================
-   TABLET
-========================= */
+/* TABLET */
 
 @media (max-width: 900px) {
 
@@ -697,38 +594,33 @@ footer small {
 }
 
 
-/* =========================
-   PHONE
-========================= */
+/* PHONE */
 
 @media (max-width: 760px) {
 
   .top {
-    align-items: flex-start;
-
     padding: 12px 5%;
-  }
 
+    align-items: flex-start;
+  }
 
   .brand img {
     width: 70px;
+
     height: 52px;
   }
 
-
   .top nav {
-    max-width: 230px;
+    max-width: 250px;
 
     gap: 8px 12px;
 
     justify-content: flex-end;
   }
 
-
   .top nav a {
     font-size: 11px;
   }
-
 
   .hero {
     min-height: auto;
@@ -736,58 +628,38 @@ footer small {
     grid-template-columns: 1fr;
 
     padding: 50px 7%;
-
-    gap: 35px;
   }
-
 
   .hero h1 {
     font-size: 43px;
   }
 
-
   .hero-logo {
     max-width: 280px;
   }
 
-
-  .products {
+  .products,
+  .info-grid,
+  .policy-grid {
     grid-template-columns: 1fr;
   }
-
-
-  .info-grid {
-    grid-template-columns: 1fr;
-  }
-
 
   .section {
     padding: 55px 7%;
   }
 
-
   .section h2 {
     font-size: 31px;
   }
-
 
   .product-image,
   .placeholder {
     height: 400px;
   }
 
-
-  .legal-page h1 {
-    font-size: 36px;
-  }
-
-
   .footer-links {
     flex-direction: column;
-
-    gap: 7px;
   }
-
 
   .footer-links span {
     display: none;
@@ -796,16 +668,13 @@ footer small {
 }
 
 
-/* =========================
-   SMALL PHONE
-========================= */
+/* SMALL PHONE */
 
 @media (max-width: 430px) {
 
   .hero h1 {
     font-size: 38px;
   }
-
 
   .product-image,
   .placeholder {
