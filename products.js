@@ -214,6 +214,16 @@ const products = [
     sizes: [
       { size: "12-18m", available: true }
     ]
+  },
+
+  {
+    name: "(PRELOVED) Black Stripe Top and Pants",
+    price: 65,
+    image: "black stripe.png",
+
+    sizes: [
+      { size: "2-3y", available: true }
+    ]
   }
   
 ];
