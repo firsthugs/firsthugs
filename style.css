@@ -323,4 +323,34 @@ footer p {
   .placeholder {
     height: 400px;
   }
+  .support-info {
+  max-width: 500px;
+  margin: 25px auto;
+  padding: 22px;
+  background: #fff3eb;
+  border-radius: 18px;
+}
+
+.support-info p {
+  margin: 16px 0;
+}
+
+.support-info strong {
+  color: #d86f55;
+}
+
+.support-info a {
+  color: #4a332d;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.support-info a:hover {
+  color: #d86f55;
+}
+
+.out-of-stock {
+  color: #a06b5d;
+  font-weight: 700;
+
 }
