@@ -254,6 +254,17 @@ const products = [
     sizes: [
       { size: "3-6m", available: true }
     ]
+  },
+
+  {
+    name: "(PRELOVED) Tan Brown Corduroy Bear Print Dungarees Set",
+    price: 72,
+    image: "brown dungaree.png",
+
+    sizes: [
+      { size: "6-9m", available: true }
+    ]
   }
+  
   
 ];
