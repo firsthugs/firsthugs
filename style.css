@@ -219,6 +219,8 @@ select {
 
   background: white;
 
+  color: #4a332d;
+
   font-size: 16px;
 
   outline: none;
@@ -268,6 +270,8 @@ select {
   height: 340px;
 
   object-fit: cover;
+
+  object-position: center;
 
   border-radius: 15px;
 }
@@ -320,6 +324,8 @@ select {
 /* SIZE */
 
 .size-label {
+  display: block;
+
   margin-bottom: 5px;
 
   font-size: 14px;
@@ -340,11 +346,19 @@ select {
 
   background: white;
 
+  color: #4a332d;
+
   font-size: 15px;
+
+  outline: none;
+}
+
+.size-select:focus {
+  border-color: #d86f55;
 }
 
 
-/* BUY */
+/* BUY BUTTON */
 
 .buy-button {
   width: 100%;
@@ -418,6 +432,9 @@ select {
   color: #d86f55;
 }
 
+
+/* RETURNS */
+
 .return-list {
   margin: 0;
 
@@ -426,6 +443,10 @@ select {
 
 .return-list li {
   margin-bottom: 14px;
+}
+
+.return-list li:last-child {
+  margin-bottom: 0;
 }
 
 
@@ -497,6 +518,12 @@ select {
   text-decoration: none;
 
   font-weight: 600;
+
+  overflow-wrap: anywhere;
+}
+
+.support-info a:hover {
+  color: #d86f55;
 }
 
 .telegram-button {
@@ -526,6 +553,10 @@ select {
   font-size: 13px;
 }
 
+.small {
+  margin-top: 18px;
+}
+
 
 /* FOOTER */
 
@@ -545,8 +576,18 @@ footer {
   font-size: 22px;
 }
 
-footer p {
-  margin: 3px;
+.footer-subtitle {
+  margin: 3px 0;
+}
+
+.ssm-number {
+  margin: 8px 0 0;
+
+  color: #e9d8d1;
+
+  font-size: 13px;
+
+  letter-spacing: 0.3px;
 }
 
 .footer-links {
@@ -581,6 +622,10 @@ footer p {
   color: #d8bdb2;
 }
 
+footer small {
+  color: #e9d8d1;
+}
+
 
 /* TABLET */
 
@@ -604,11 +649,13 @@ footer p {
     align-items: flex-start;
   }
 
+
   .brand img {
     width: 70px;
 
     height: 52px;
   }
+
 
   .top nav {
     max-width: 250px;
@@ -618,9 +665,11 @@ footer p {
     justify-content: flex-end;
   }
 
+
   .top nav a {
     font-size: 11px;
   }
+
 
   .hero {
     min-height: auto;
@@ -628,15 +677,20 @@ footer p {
     grid-template-columns: 1fr;
 
     padding: 50px 7%;
+
+    gap: 35px;
   }
+
 
   .hero h1 {
     font-size: 43px;
   }
 
+
   .hero-logo {
     max-width: 280px;
   }
+
 
   .products,
   .info-grid,
@@ -644,22 +698,29 @@ footer p {
     grid-template-columns: 1fr;
   }
 
+
   .section {
     padding: 55px 7%;
   }
 
+
   .section h2 {
     font-size: 31px;
   }
+
 
   .product-image,
   .placeholder {
     height: 400px;
   }
 
+
   .footer-links {
     flex-direction: column;
+
+    gap: 7px;
   }
+
 
   .footer-links span {
     display: none;
@@ -675,6 +736,7 @@ footer p {
   .hero h1 {
     font-size: 38px;
   }
+
 
   .product-image,
   .placeholder {
