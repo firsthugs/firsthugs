@@ -137,12 +137,22 @@ const products = [
   },
 
   {
-    name: "Green Embroidered Mesh Party Dress",
+    name: "(PRELOVED) Green Embroidered Mesh Party Dress",
     price: 48,
     image: "green dress.png",
 
     sizes: [
       { size: "9-12m", available: true }
+    ]
+  },
+
+  {
+    name: "(PRELOVED) White Ruffle Collar Mesh Dress",
+    price: 65,
+    image: "white ruffle dress.png",
+
+    sizes: [
+      { size: "12-18m", available: true }
     ]
   }
   
