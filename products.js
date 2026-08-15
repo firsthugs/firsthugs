@@ -114,6 +114,16 @@ const products = [
       { size: "6-9m", available: true },
       { size: "12-18m", available: false }
     ]
+  },
+
+  {
+    name: "Berry Red Embroidered Mesh Party Dress",
+    price: 78,
+    image: "maroon.jpg.webp",
+
+    sizes: [
+      { size: "9-12m", available: true }
+    ]
   }
   
 ];
