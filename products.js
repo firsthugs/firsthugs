@@ -235,5 +235,15 @@ const products = [
       { size: "12-18m", available: true }
     ]
   },
+
+  {
+    name: "(PRELOVED) Blue Floral Top and Pants",
+    price: 65,
+    image: "blue floral.png",
+
+    sizes: [
+      { size: "2-3y", available: true }
+    ]
+  }
   
 ];
