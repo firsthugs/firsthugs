@@ -154,6 +154,16 @@ const products = [
     sizes: [
       { size: "12-18m", available: true }
     ]
+  },
+
+  {
+    name: "Pink Broderie Pinafore and Top",
+    price: 78,
+    image: "pink pinafore.png",
+
+    sizes: [
+      { size: "1.5-2y", available: true }
+    ]
   }
   
 ];
