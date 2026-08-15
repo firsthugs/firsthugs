@@ -411,6 +411,8 @@ select {
     repeat(2, minmax(0, 1fr));
 
   gap: 25px;
+
+  align-items: start;
 }
 
 .info-card {
@@ -431,6 +433,23 @@ select {
 
 .info-card strong {
   color: #d86f55;
+}
+
+
+/* RETURNS */
+
+.return-list {
+  margin: 0;
+
+  padding-left: 20px;
+}
+
+.return-list li {
+  margin-bottom: 14px;
+}
+
+.return-list li:last-child {
+  margin-bottom: 0;
 }
 
 
