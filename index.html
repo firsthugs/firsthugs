@@ -17,6 +17,8 @@
 
 <body>
 
+<!-- HEADER -->
+
 <header class="top">
 
   <a class="brand" href="#home">
@@ -68,6 +70,7 @@
 
     </div>
 
+
     <img
       class="hero-logo"
       src="firsthugs-logo.jpeg"
@@ -79,7 +82,10 @@
 
   <!-- PRODUCTS -->
 
-  <section id="products" class="section">
+  <section
+    id="products"
+    class="section"
+  >
 
     <p class="eyebrow">
       OUR COLLECTION
@@ -88,6 +94,7 @@
     <h2>
       FirstHugs Favourites
     </h2>
+
 
     <div class="search-area">
 
@@ -99,10 +106,12 @@
 
     </div>
 
+
     <div
       id="product-list"
       class="products"
     ></div>
+
 
     <p class="note">
       Select your preferred size before placing an order.
@@ -113,7 +122,10 @@
 
   <!-- ABOUT -->
 
-  <section id="about" class="section soft">
+  <section
+    id="about"
+    class="section soft"
+  >
 
     <div class="section-inner">
 
@@ -142,7 +154,10 @@
 
   <!-- SHIPPING -->
 
-  <section id="shipping" class="section">
+  <section
+    id="shipping"
+    class="section"
+  >
 
     <p class="eyebrow">
       SHOPPING INFO
@@ -154,6 +169,8 @@
 
 
     <div class="info-grid">
+
+      <!-- SHIPPING CARD -->
 
       <div class="info-card">
 
@@ -184,6 +201,8 @@
       </div>
 
 
+      <!-- RETURNS CARD -->
+
       <div class="info-card">
 
         <h3>
@@ -200,7 +219,9 @@
           <li>
             For defective or incorrect items,
             please contact us with your
-            <strong>order details and photos of the item</strong>.
+            <strong>
+              order details and photos of the item
+            </strong>.
           </li>
 
           <li>
@@ -238,7 +259,10 @@
 
   <!-- POLICIES -->
 
-  <section id="policies" class="section soft">
+  <section
+    id="policies"
+    class="section soft"
+  >
 
     <div class="section-inner">
 
@@ -253,7 +277,7 @@
 
       <div class="policy-grid">
 
-        <!-- PRIVACY POLICY -->
+        <!-- PRIVACY -->
 
         <div class="policy-card">
 
@@ -424,8 +448,12 @@
     FirstHugs
   </strong>
 
-  <p>
+  <p class="footer-subtitle">
     Baby Clothes
+  </p>
+
+  <p class="ssm-number">
+    SSM Registration No : 202403302320-V
   </p>
 
 
@@ -457,12 +485,16 @@
 </footer>
 
 
-<!-- PRODUCTS -->
+<!-- PRODUCT DATABASE -->
 
 <script src="products.js"></script>
 
 
 <script>
+
+/* ==============================
+   DISPLAY PRODUCTS
+================================ */
 
 function displayProducts(productArray) {
 
@@ -477,6 +509,8 @@ function displayProducts(productArray) {
     const productIndex =
       products.indexOf(product);
 
+
+    /* PRODUCT IMAGE */
 
     let imageHTML = "";
 
@@ -500,6 +534,8 @@ function displayProducts(productArray) {
 
     }
 
+
+    /* AVAILABLE SIZES ONLY */
 
     const availableSizes =
       product.sizes.filter(function(item) {
@@ -530,6 +566,8 @@ function displayProducts(productArray) {
     const hasStock =
       availableSizes.length > 0;
 
+
+    /* SIZE */
 
     let sizeHTML = "";
 
@@ -566,6 +604,8 @@ function displayProducts(productArray) {
     }
 
 
+    /* BUTTON */
+
     let buttonHTML = "";
 
     if (hasStock) {
@@ -594,6 +634,8 @@ function displayProducts(productArray) {
 
     }
 
+
+    /* PRODUCT CARD */
 
     const productCard = `
 
@@ -632,6 +674,10 @@ function displayProducts(productArray) {
 }
 
 
+/* ==============================
+   SEARCH
+================================ */
+
 function searchProducts() {
 
   const searchText =
@@ -656,6 +702,10 @@ function searchProducts() {
 
 }
 
+
+/* ==============================
+   BUY NOW
+================================ */
 
 function orderProduct(productIndex) {
 
@@ -726,6 +776,8 @@ function orderProduct(productIndex) {
 }
 
 
+/* SEARCH LISTENER */
+
 document
   .getElementById("product-search")
   .addEventListener(
@@ -733,6 +785,8 @@ document
     searchProducts
   );
 
+
+/* LOAD PRODUCTS */
 
 displayProducts(products);
 
