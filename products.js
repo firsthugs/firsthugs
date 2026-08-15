@@ -274,7 +274,18 @@ const products = [
     sizes: [
       { size: "3-4y", available: true }
     ]
+  },
+
+  {
+    name: "(PRELOVED) Pink and Green Stripe Top and Pants Set",
+    price: 62,
+    image: "pink green.png",
+
+    sizes: [
+      { size: "12-18m", available: true }
+    ]
   }
+  
   
   
 ];
