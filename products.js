@@ -124,6 +124,16 @@ const products = [
     sizes: [
       { size: "9-12m", available: true }
     ]
+  },
+
+  {
+    name: "Lilac Purple Printed 3D Flower Party Dress",
+    price: 59,
+    image: "floral dress.png",
+
+    sizes: [
+      { size: "9-12m", available: true }
+    ]
   }
   
 ];
