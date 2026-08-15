@@ -224,6 +224,16 @@ const products = [
     sizes: [
       { size: "2-3y", available: true }
     ]
-  }
+  },
+
+  {
+    name: "(PRELOVED) White Long Sleeve Knitted Dress",
+    price: 60,
+    image: "ri white dress.png",
+
+    sizes: [
+      { size: "12-18m", available: true }
+    ]
+  },
   
 ];
