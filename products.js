@@ -167,12 +167,22 @@ const products = [
   },
 
   {
-    name: "Pink/Peach Embroideres Mesh Party Dress",
+    name: "Pink/Peach Embroidered Mesh Party Dress",
     price: 60,
     image: "peach dress.png",
 
     sizes: [
       { size: "6-9m", available: true }
+    ]
+  },
+
+  {
+    name: "(PRELOVED) Floral Orange Top and Pants",
+    price: 55,
+    image: "floral orange.png",
+
+    sizes: [
+      { size: "9-12m", available: true }
     ]
   }
   
