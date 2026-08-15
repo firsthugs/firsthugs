@@ -204,6 +204,16 @@ const products = [
     sizes: [
       { size: "12-18m", available: true }
     ]
+  },
+
+  {
+    name: "(PRELOVED) Black Long Sleeve Knitted Dress",
+    price: 60,
+    image: "ri black dress.png",
+
+    sizes: [
+      { size: "12-18m", available: true }
+    ]
   }
   
 ];
