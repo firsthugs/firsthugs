@@ -134,6 +134,16 @@ const products = [
     sizes: [
       { size: "9-12m", available: true }
     ]
+  },
+
+  {
+    name: "Green Embroidered Mesh Party Dress",
+    price: 48,
+    image: "green dress.png",
+
+    sizes: [
+      { size: "9-12m", available: true }
+    ]
   }
   
 ];
