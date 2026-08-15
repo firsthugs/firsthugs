@@ -184,6 +184,16 @@ const products = [
     sizes: [
       { size: "9-12m", available: true }
     ]
+  },
+
+  {
+    name: "(PRELOVED) White Tulip Top and Pants",
+    price: 65,
+    image: "white tulip.png",
+
+    sizes: [
+      { size: "9-12m", available: true }
+    ]
   }
   
 ];
