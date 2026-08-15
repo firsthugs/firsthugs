@@ -244,6 +244,16 @@ const products = [
     sizes: [
       { size: "2-3y", available: true }
     ]
+  },
+
+  {
+    name: "(PRELOVED) Multi Bright Strawberry/Apple Top and Pants",
+    price: 65,
+    image: "multi bright.png",
+
+    sizes: [
+      { size: "3-6m", available: true }
+    ]
   }
   
 ];
