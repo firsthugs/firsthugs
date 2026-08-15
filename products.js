@@ -194,6 +194,16 @@ const products = [
     sizes: [
       { size: "9-12m", available: true }
     ]
+  },
+
+  {
+    name: "(PRELOVED) Pink Pinafore Dress",
+    price: 48,
+    image: "next pink pinafore.png",
+
+    sizes: [
+      { size: "12-18m", available: true }
+    ]
   }
   
 ];
