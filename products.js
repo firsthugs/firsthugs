@@ -264,6 +264,16 @@ const products = [
     sizes: [
       { size: "6-9m", available: true }
     ]
+  },
+
+  {
+    name: "(PRELOVED) Mint Green Top and Tutu Skirt Set",
+    price: 59,
+    image: "mint tutu.png",
+
+    sizes: [
+      { size: "3-4y", available: true }
+    ]
   }
   
   
