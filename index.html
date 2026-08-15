@@ -148,7 +148,9 @@
 
       <div class="info-card">
 
-        <h3>Shipping</h3>
+        <h3>
+          Shipping
+        </h3>
 
         <p>
           Delivery charges and estimated delivery time
@@ -164,7 +166,9 @@
 
       <div class="info-card">
 
-        <h3>Returns</h3>
+        <h3>
+          Returns
+        </h3>
 
         <p>
           Please contact FirstHugs promptly if you receive
@@ -183,44 +187,71 @@
   </section>
 
 
-  <!-- CONTACT -->
+  <!-- CUSTOMER SUPPORT -->
 
   <section id="contact" class="section contact">
 
     <p class="eyebrow">
-      CONTACT
+      CUSTOMER SUPPORT
     </p>
 
     <h2>
-      Ready to order?
+      Need Help?
     </h2>
 
     <p>
-      Contact FirstHugs via Telegram.
+      For orders, product enquiries or customer support,
+      please contact FirstHugs.
     </p>
 
-    <p class="contact-number">
-      @firsthugsAin
-    </p>
+
+    <div class="support-info">
+
+      <p>
+        <strong>Email</strong>
+        <br>
+
+        <a href="mailto:firsthugscollection@gmail.com">
+          firsthugscollection@gmail.com
+        </a>
+      </p>
+
+
+      <p>
+        <strong>Telegram</strong>
+        <br>
+
+        <a
+          href="https://t.me/firsthugsAin"
+          target="_blank"
+        >
+          @firsthugsAin
+        </a>
+      </p>
+
+    </div>
+
 
     <a
       class="telegram-button"
       href="https://t.me/firsthugsAin"
       target="_blank"
     >
-      OPEN TELEGRAM
+      CONTACT VIA TELEGRAM
     </a>
 
+
     <p class="small">
-      Please confirm product availability,
-      size, delivery fee and final order total
-      before making payment.
+      For order enquiries, please include
+      the product name and preferred size.
     </p>
 
   </section>
 
 </main>
 
+
+<!-- FOOTER -->
 
 <footer>
 
@@ -245,6 +276,10 @@
 
 
 <script>
+
+/* ==============================
+   DISPLAY PRODUCTS
+================================ */
 
 function displayProducts(productArray) {
 
@@ -285,11 +320,13 @@ function displayProducts(productArray) {
     }
 
 
-    /* AVAILABLE SIZES ONLY */
+    /* AVAILABLE SIZES */
 
     const availableSizes =
       product.sizes.filter(function(item) {
+
         return item.available === true;
+
       });
 
 
@@ -315,7 +352,7 @@ function displayProducts(productArray) {
       availableSizes.length > 0;
 
 
-    /* BUTTON */
+    /* BUY BUTTON */
 
     let buttonHTML = "";
 
@@ -364,9 +401,12 @@ function displayProducts(productArray) {
             RM${product.price}
           </p>
 
+
           ${
             hasStock
+
             ? `
+
               <label
                 class="size-label"
                 for="size-${productIndex}"
@@ -378,15 +418,22 @@ function displayProducts(productArray) {
                 id="size-${productIndex}"
                 class="size-select"
               >
+
                 ${sizeOptions}
+
               </select>
+
             `
+
             : `
+
               <p class="out-of-stock">
                 Currently unavailable
               </p>
+
             `
           }
+
 
           ${buttonHTML}
 
@@ -406,7 +453,9 @@ function displayProducts(productArray) {
 }
 
 
-/* SEARCH */
+/* ==============================
+   SEARCH PRODUCTS
+================================ */
 
 function searchProducts() {
 
@@ -433,7 +482,9 @@ function searchProducts() {
 }
 
 
-/* BUY NOW */
+/* ==============================
+   BUY NOW
+================================ */
 
 function orderProduct(productIndex) {
 
@@ -458,7 +509,9 @@ function orderProduct(productIndex) {
 
   if (!sizeBox) {
 
-    alert("This product is currently unavailable.");
+    alert(
+      "This product is currently unavailable."
+    );
 
     return;
 
@@ -471,12 +524,16 @@ function orderProduct(productIndex) {
 
   if (!selectedSize) {
 
-    alert("Please select a size first.");
+    alert(
+      "Please select a size first."
+    );
 
     return;
 
   }
 
+
+  /* TELEGRAM MESSAGE */
 
   const message =
     "Hi FirstHugs! 🧸\n\n" +
@@ -500,7 +557,9 @@ function orderProduct(productIndex) {
 }
 
 
-/* SEARCH */
+/* ==============================
+   SEARCH LISTENER
+================================ */
 
 document
   .getElementById("product-search")
@@ -510,11 +569,14 @@ document
   );
 
 
-/* LOAD PRODUCTS */
+/* ==============================
+   LOAD PRODUCTS
+================================ */
 
 displayProducts(products);
 
 </script>
 
 </body>
+
 </html>
