@@ -39,8 +39,6 @@
 
 <main>
 
-  <!-- HOME -->
-
   <section class="hero" id="home">
 
     <div class="hero-text">
@@ -72,8 +70,6 @@
 
   </section>
 
-
-  <!-- PRODUCTS -->
 
   <section id="products" class="section">
 
@@ -107,8 +103,6 @@
   </section>
 
 
-  <!-- ABOUT -->
-
   <section id="about" class="section soft">
 
     <div class="section-inner">
@@ -135,8 +129,6 @@
 
   </section>
 
-
-  <!-- SHIPPING -->
 
   <section id="shipping" class="section">
 
@@ -183,18 +175,39 @@
       <div class="info-card">
 
         <h3>
-          Returns
+          Returns & Refunds
         </h3>
 
-        <p>
-          Please contact FirstHugs promptly if you receive
-          an incorrect or defective item.
-        </p>
+        <ul class="return-list">
 
-        <p>
-          Return eligibility is subject to the condition
-          of the item and order details.
-        </p>
+          <li>
+            Returns must be requested within
+            <strong>7 days of receiving your order</strong>.
+          </li>
+
+          <li>
+            For defective or incorrect items, please contact us
+            with your <strong>order details and photos of the item</strong>.
+          </li>
+
+          <li>
+            Items must be
+            <strong>unused, unwashed, unworn, and with original tags attached</strong>.
+          </li>
+
+          <li>
+            Return shipping costs are covered by
+            <strong>FirstHugs for defective or incorrect items</strong>.
+            For other approved returns, return shipping is borne by the customer.
+          </li>
+
+          <li>
+            Refunds will be processed within
+            <strong>5–7 business days</strong>
+            after the returned item has been received and inspected.
+          </li>
+
+        </ul>
 
       </div>
 
@@ -202,8 +215,6 @@
 
   </section>
 
-
-  <!-- CUSTOMER SUPPORT -->
 
   <section id="contact" class="section contact">
 
@@ -275,8 +286,6 @@
 </main>
 
 
-<!-- FOOTER -->
-
 <footer>
 
   <strong>
@@ -294,14 +303,10 @@
 </footer>
 
 
-<!-- PRODUCTS DATABASE -->
-
 <script src="products.js"></script>
 
 
 <script>
-
-/* DISPLAY PRODUCTS */
 
 function displayProducts(productArray) {
 
@@ -316,8 +321,6 @@ function displayProducts(productArray) {
     const productIndex =
       products.indexOf(product);
 
-
-    /* IMAGE */
 
     let imageHTML = "";
 
@@ -342,13 +345,9 @@ function displayProducts(productArray) {
     }
 
 
-    /* AVAILABLE SIZE ONLY */
-
     const availableSizes =
       product.sizes.filter(function(item) {
-
         return item.available === true;
-
       });
 
 
@@ -373,8 +372,6 @@ function displayProducts(productArray) {
     const hasStock =
       availableSizes.length > 0;
 
-
-    /* SIZE AREA */
 
     let sizeHTML = "";
 
@@ -411,8 +408,6 @@ function displayProducts(productArray) {
     }
 
 
-    /* BUTTON */
-
     let buttonHTML = "";
 
     if (hasStock) {
@@ -441,8 +436,6 @@ function displayProducts(productArray) {
 
     }
 
-
-    /* PRODUCT CARD */
 
     const productCard = `
 
@@ -481,8 +474,6 @@ function displayProducts(productArray) {
 }
 
 
-/* SEARCH PRODUCTS */
-
 function searchProducts() {
 
   const searchText =
@@ -507,8 +498,6 @@ function searchProducts() {
 
 }
 
-
-/* BUY NOW */
 
 function orderProduct(productIndex) {
 
@@ -579,8 +568,6 @@ function orderProduct(productIndex) {
 }
 
 
-/* SEARCH LISTENER */
-
 document
   .getElementById("product-search")
   .addEventListener(
@@ -588,8 +575,6 @@ document
     searchProducts
   );
 
-
-/* START WEBSITE */
 
 displayProducts(products);
 
