@@ -106,16 +106,6 @@ const products = [
   },
 
   {
-    name: "Berry Red Embroidered Mesh Party Dress",
-    price: 78,
-    image: "maroon.jpg.webp",
-
-    sizes: [
-      { size: "9-12m", available: true }
-    ]
-  },
-
-  {
     name: "Lilac Purple Printed 3D Flower Party Dress",
     price: 59,
     image: "floral dress.png",
@@ -176,16 +166,6 @@ const products = [
   },
 
   {
-    name: "(PRELOVED) White Tulip Top and Pants",
-    price: 65,
-    image: "white tulip.png",
-
-    sizes: [
-      { size: "9-12m", available: true }
-    ]
-  },
-
-  {
     name: "(PRELOVED) Pink Pinafore Dress",
     price: 48,
     image: "next pink pinafore.png",
@@ -212,16 +192,6 @@ const products = [
 
     sizes: [
       { size: "2-3y", available: true }
-    ]
-  },
-
-  {
-    name: "(PRELOVED) White Long Sleeve Knitted Dress",
-    price: 60,
-    image: "ri white dress.png",
-
-    sizes: [
-      { size: "12-18m", available: true }
     ]
   },
 
