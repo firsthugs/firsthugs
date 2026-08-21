@@ -1005,7 +1005,7 @@
   function estimate(v){
     if(!Number.isFinite(v)||v<0) return 0;
     switch(state.formula){
-      case 'vinted': return ((v+2.99)*6.15)+25;
+      case 'vinted': return ((v+2.99)*6.12)+25;
       case 'uk': return (v*6)+25;
       case 'zara': return ((v+2.95)*6)+25;
       case 'hk': return (v*0.52)+26;
