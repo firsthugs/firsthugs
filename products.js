@@ -18,17 +18,6 @@ const products = [
   },
 
   {
-    name: "Neutral Embroidered Top and Pants",
-    price: 125,
-    image: "set.jpg",
-
-    sizes: [
-      { size: "1.5-2Y", available: true },
-      { size: "6-9M", available: false }
-    ]
-  },
-
-  {
     name: "Mint Green Top and Pants",
     price: 135,
     image: "mint set.jpeg",
