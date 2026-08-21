@@ -75,6 +75,12 @@
 #calculator .fhc-shop-name{font-size:14px;font-weight:900;text-align:center;line-height:1.2;color:#111}
 #calculator .fhc-price-wrap{display:grid;gap:12px}
 #calculator .fhc-label{font-size:15px;font-weight:900;color:#221818}
+#calculator #fhc-vinted-note{
+  font-size:14px;
+  color:#6f5a5e;
+  margin-top:-4px;
+  margin-bottom:2px;
+}
 #calculator .fhc-input-shell{display:flex;align-items:center;border:1.5px solid #f7c7d7;border-radius:14px;background:#fff;overflow:hidden}
 #calculator .fhc-currency{min-width:64px;text-align:center;color:#f45f91;font-size:24px;font-weight:900;border-right:1px solid #f7d8e2;padding:15px 10px}
 #calculator .fhc-input{width:100%;border:0;outline:0;font-size:20px;padding:17px;background:transparent;color:#221818}
@@ -497,6 +503,7 @@
       <div class="fhc-title"><span class="fhc-icon">✏️</span><span>2. ENTER PRICE</span></div>
       <div class="fhc-price-wrap">
         <label class="fhc-label" id="fhc-price-label" for="fhc-price-input">ITEM PRICE (GBP)</label>
+        <div id="fhc-vinted-note">Enter the price including Buyer Protection Fee in GBP</div>
         <div class="fhc-input-shell"><span class="fhc-currency" id="fhc-currency-symbol">£</span><input class="fhc-input" id="fhc-price-input" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Enter price in GBP"></div>
       </div>
 
@@ -1001,6 +1008,7 @@
   const depositEl=document.getElementById('fhc-deposit');
   const currencySymbol=document.getElementById('fhc-currency-symbol');
   const priceLabel=document.getElementById('fhc-price-label');
+  const vintedNote=document.getElementById('fhc-vinted-note');
 
   function estimate(v){
     if(!Number.isFinite(v)||v<0) return 0;
@@ -1048,6 +1056,11 @@
     currencySymbol.textContent=state.symbol;
     priceLabel.textContent=`ITEM PRICE (${state.currency})`;
     priceInput.placeholder=`Enter price in ${state.currency}`;
+    if(state.formula === 'vinted'){
+      vintedNote.style.display='block';
+    }else{
+      vintedNote.style.display='none';
+    }
     priceInput.value='';
     update();
   }));
