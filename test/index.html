@@ -1988,9 +1988,11 @@ function updateTimers() {
 }
 setInterval(() => { updateTimers(); const before=cart.length; cart=cart.filter(x => new Date(x.expires_at)>new Date()); if(cart.length!==before){localStorage.setItem(CART_KEY,JSON.stringify(cart));renderCart();refreshAvailability();}},1000);
 
-initProductGallery();
-renderCart();
-refreshAvailability();
+window.addEventListener("DOMContentLoaded", () => {
+  initProductGallery();
+  renderCart();
+  refreshAvailability();
+});
 </script>
 
 
