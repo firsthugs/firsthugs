@@ -1314,7 +1314,20 @@
 
 <script src="/firsthugs/products.js"></script>
 
-
+<script>
+/* Extra gallery photo for Lilac Purple Printed 3D Flower Party Dress */
+(function () {
+  const lilacProduct = Array.isArray(window.products)
+    ? window.products.find(p => p.name === "Lilac Purple Printed 3D Flower Party Dress")
+    : null;
+  if (lilacProduct) {
+    lilacProduct.images = [
+      lilacProduct.image,
+      "test/lilac-purple-printed-3d-flower-party-dress-2.jpg"
+    ];
+  }
+})();
+</script>
 
 <script>
 
