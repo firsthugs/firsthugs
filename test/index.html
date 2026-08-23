@@ -1586,7 +1586,9 @@ async function rpc(name, body = {}) {
     console.error("Supabase RPC failed", r.status, details);
     throw new Error(`Supabase ${r.status}: ${details}`);
   }
-  return r.json();
+  const text = await r.text();
+  if (!text) return null;
+  try { return JSON.parse(text); } catch (_) { return text; }
 }
 
 async function refreshAvailability() {
@@ -1619,15 +1621,47 @@ async function addToCart(productIndex) {
 
 async function removeCartItem(i) {
   const item = cart[i];
-  try { await rpc("cancel_reservation", {p_cart_id: cartId, p_reservation_id: item.reservation_id}); } catch(e) { console.error(e); }
-  cart.splice(i,1); localStorage.setItem(CART_KEY, JSON.stringify(cart)); renderCart(); await refreshAvailability();
+  if (!item) return;
+
+  // Remove from the visible cart immediately so the button always responds.
+  cart.splice(i, 1);
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  renderCart();
+
+  try {
+    await rpc("cancel_reservation", {
+      p_cart_id: cartId,
+      p_reservation_id: item.reservation_id
+    });
+  } catch (e) {
+    console.error("Could not release reservation", e);
+    alert("The item was removed from your cart, but its reservation could not be released yet. It will expire automatically.");
+  }
+  await refreshAvailability();
+}
+
+function checkoutCart() {
+  if (!cart.length) { alert("Your cart is empty."); return; }
+  const total = cart.reduce((sum, item) => sum + Number(item.price || 0), 0);
+  const lines = cart.map((item, i) => `${i + 1}. ${item.name}\nSize: ${item.size}\nPrice: RM${item.price}`).join("\n\n");
+  const message = `Hi FirstHugs! 🧸\n\nI would like to order:\n\n${lines}\n\nTotal: RM${total}\n\nThese items are currently reserved in my cart.`;
+  const telegramLink = "https://t.me/firsthugsAin?text=" + encodeURIComponent(message);
+  window.open(telegramLink, "_blank");
 }
 
 function renderCart() {
   const count = document.getElementById("fh-cart-count"); if (count) count.textContent = cart.length;
   const list = document.getElementById("fh-cart-items"); if (!list) return;
-  if (!cart.length) { list.innerHTML = '<p>Your cart is empty.</p>'; return; }
-  list.innerHTML = cart.map((x,i) => `<div class="fh-cart-item"><strong>${x.name}</strong><br>Size: ${x.size}<br>RM${x.price}<br><span class="fh-timer" data-exp="${x.expires_at}"></span><br><button type="button" onclick="removeCartItem(${i})">Remove</button></div>`).join("");
+  if (!cart.length) {
+    list.innerHTML = '<p>Your cart is empty.</p>';
+    return;
+  }
+  const total = cart.reduce((sum, item) => sum + Number(item.price || 0), 0);
+  list.innerHTML = cart.map((x,i) => `<div class="fh-cart-item"><strong>${x.name}</strong><br>Size: ${x.size}<br>RM${x.price}<br><span class="fh-timer" data-exp="${x.expires_at}"></span><br><button class="fh-remove-btn" type="button" data-cart-index="${i}">Remove</button></div>`).join("") + `<div class="fh-cart-total"><strong>Total: RM${total}</strong></div><button id="fh-checkout-btn" type="button">CHECKOUT</button>`;
+  list.querySelectorAll('.fh-remove-btn').forEach(btn => {
+    btn.addEventListener('click', () => removeCartItem(Number(btn.dataset.cartIndex)));
+  });
+  document.getElementById('fh-checkout-btn')?.addEventListener('click', checkoutCart);
   updateTimers();
 }
 function updateTimers() {
@@ -1649,7 +1683,7 @@ refreshAvailability();
 <style>
 #fh-cart-button{position:fixed;right:18px;bottom:18px;z-index:9998;border:0;border-radius:999px;padding:14px 18px;background:#de6f52;color:#fff;font-weight:700;box-shadow:0 6px 20px #0002;cursor:pointer}
 #fh-cart-panel{position:fixed;right:-390px;top:0;width:min(380px,92vw);height:100vh;background:#fff;z-index:9999;box-shadow:-8px 0 30px #0002;padding:24px;transition:right .25s;overflow:auto}
-#fh-cart-panel.open{right:0}.fh-cart-close{float:right;border:0;background:none;font-size:28px;cursor:pointer}.fh-cart-item{padding:16px 0;border-bottom:1px solid #eee;line-height:1.6}.fh-cart-item button{margin-top:8px}.fh-timer{font-weight:700;color:#9d3f57}
+#fh-cart-panel.open{right:0}.fh-cart-close{float:right;border:0;background:none;font-size:28px;cursor:pointer}.fh-cart-item{padding:16px 0;border-bottom:1px solid #eee;line-height:1.6}.fh-cart-item button{margin-top:8px;cursor:pointer}.fh-timer{font-weight:700;color:#9d3f57}.fh-cart-total{padding:18px 0 12px;font-size:18px}#fh-checkout-btn{width:100%;border:0;border-radius:999px;padding:14px 18px;background:#de6f52;color:#fff;font-weight:700;font-size:16px;cursor:pointer}
 </style>
 <button id="fh-cart-button" type="button" onclick="document.getElementById('fh-cart-panel').classList.add('open')">CART (<span id="fh-cart-count">0</span>)</button>
 <aside id="fh-cart-panel"><button class="fh-cart-close" type="button" onclick="this.parentElement.classList.remove('open')">×</button><h2>Your Cart</h2><p>Items are reserved for 15 minutes.</p><div id="fh-cart-items"></div></aside>
