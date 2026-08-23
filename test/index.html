@@ -1317,9 +1317,13 @@
 <script>
 /* Extra gallery photo for Lilac Purple Printed 3D Flower Party Dress */
 (function () {
-  const lilacProduct = Array.isArray(window.products)
-    ? window.products.find(p => p.name === "Lilac Purple Printed 3D Flower Party Dress")
-    : null;
+  const lilacProduct =
+    (typeof products !== "undefined" && Array.isArray(products))
+      ? products.find(
+          p => p.name === "Lilac Purple Printed 3D Flower Party Dress"
+        )
+      : null;
+
   if (lilacProduct) {
     lilacProduct.images = [
       lilacProduct.image,
