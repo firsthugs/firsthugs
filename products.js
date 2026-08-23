@@ -106,7 +106,7 @@ const products = [
   },
 
   {
-    name: "Lilac Purple Printed 3D Flower Party Dress",
+    name: "(PRELOVED) Lilac Purple Printed 3D Flower Party Dress",
     price: 59,
     image: "floral dress.png",
 
@@ -216,16 +216,6 @@ const products = [
   },
 
   {
-    name: "(PRELOVED) Tan Brown Corduroy Bear Print Dungarees Set",
-    price: 72,
-    image: "brown dungaree.png",
-
-    sizes: [
-      { size: "6-9m", available: true }
-    ]
-  },
-
-  {
     name: "(PRELOVED) Mint Green Top and Tutu Skirt Set",
     price: 59,
     image: "mint tutu.png",
@@ -233,17 +223,9 @@ const products = [
     sizes: [
       { size: "3-4y", available: true }
     ]
+    
   },
 
-  {
-    name: "(PRELOVED) Pink and Green Stripe Top and Pants Set",
-    price: 62,
-    image: "pink green.png",
-
-    sizes: [
-      { size: "12-18m", available: true }
-    ]
-  }
   
   
   
