@@ -197,6 +197,120 @@
 }
 </style>
 
+
+<style>
+/* FIRSTHUGS PRODUCT GALLERY — click image to enlarge */
+#fh-gallery{
+  position:fixed;
+  inset:0;
+  z-index:10050;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.88);
+  padding:18px;
+}
+#fh-gallery.open{display:flex}
+#fh-gallery .fh-gallery-inner{
+  width:min(960px,100%);
+  max-height:94vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  position:relative;
+}
+#fh-gallery .fh-gallery-main-wrap{
+  width:100%;
+  min-height:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  touch-action:pan-y;
+}
+#fh-gallery-main{
+  max-width:100%;
+  max-height:76vh;
+  object-fit:contain;
+  border-radius:12px;
+  cursor:zoom-in;
+  transition:transform .2s ease;
+  transform-origin:center center;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+#fh-gallery-main.zoomed{transform:scale(1.7);cursor:zoom-out}
+#fh-gallery-close{
+  position:absolute;
+  right:0;
+  top:-2px;
+  width:44px;
+  height:44px;
+  border:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.94);
+  color:#222;
+  font-size:28px;
+  line-height:1;
+  cursor:pointer;
+  z-index:3;
+}
+.fh-gallery-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:46px;
+  height:46px;
+  border:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.9);
+  color:#222;
+  font-size:28px;
+  cursor:pointer;
+  z-index:2;
+}
+#fh-gallery-prev{left:8px}
+#fh-gallery-next{right:8px}
+#fh-gallery .fh-gallery-meta{
+  color:#fff;
+  text-align:center;
+  font-size:14px;
+}
+#fh-gallery-thumbs{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  overflow-x:auto;
+  padding:2px 4px 4px;
+}
+#fh-gallery-thumbs button{
+  flex:0 0 auto;
+  width:58px;
+  height:70px;
+  padding:0;
+  border:2px solid transparent;
+  border-radius:8px;
+  overflow:hidden;
+  background:#fff;
+  cursor:pointer;
+}
+#fh-gallery-thumbs button.active{border-color:#fff}
+#fh-gallery-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+#products .product-image{cursor:zoom-in}
+@media(max-width:760px){
+  #fh-gallery{padding:10px}
+  #fh-gallery-main{max-height:72vh;border-radius:8px}
+  .fh-gallery-nav{width:42px;height:42px;font-size:25px}
+  #fh-gallery-prev{left:2px}
+  #fh-gallery-next{right:2px}
+  #fh-gallery-close{right:2px;top:2px}
+  #fh-gallery-thumbs button{width:52px;height:64px}
+}
+</style>
+
 </head>
 
 
@@ -1233,15 +1347,24 @@ function displayProducts(productArray) {
       let imageHTML = "";
 
 
-      if (product.image) {
+      const productImages = Array.isArray(product.images) && product.images.length
+        ? product.images
+        : (product.image ? [product.image] : []);
+
+      if (productImages.length) {
 
         imageHTML = `
 
           <img
             class="product-image"
-            src="/firsthugs/${encodeURI(product.image)}"
+            src="/firsthugs/${encodeURI(productImages[0])}"
             alt="${product.name}"
             loading="lazy"
+            role="button"
+            tabindex="0"
+            aria-label="View photos of ${product.name}"
+            onclick="openProductGallery(${productIndex})"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProductGallery(${productIndex});}"
           >
 
         `;
@@ -1655,6 +1778,106 @@ document
 ================================ */
 
 
+
+/* ==============================
+   PRODUCT IMAGE GALLERY
+   Supports product.images = ["photo1.jpg", "photo2.jpg", ...]
+   Falls back to product.image when only one photo exists.
+================================ */
+let fhGalleryImages = [];
+let fhGalleryIndex = 0;
+let fhGalleryProductName = "";
+let fhGalleryTouchStartX = null;
+
+function getProductImages(product) {
+  if (Array.isArray(product.images) && product.images.length) return product.images;
+  return product.image ? [product.image] : [];
+}
+
+function openProductGallery(productIndex) {
+  const product = products[productIndex];
+  if (!product) return;
+  const images = getProductImages(product);
+  if (!images.length) return;
+  fhGalleryImages = images;
+  fhGalleryIndex = 0;
+  fhGalleryProductName = product.name;
+  const gallery = document.getElementById("fh-gallery");
+  gallery.classList.add("open");
+  gallery.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  renderProductGallery();
+}
+
+function closeProductGallery() {
+  const gallery = document.getElementById("fh-gallery");
+  gallery.classList.remove("open");
+  gallery.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  const main = document.getElementById("fh-gallery-main");
+  main.classList.remove("zoomed");
+}
+
+function renderProductGallery() {
+  const main = document.getElementById("fh-gallery-main");
+  const counter = document.getElementById("fh-gallery-counter");
+  const thumbs = document.getElementById("fh-gallery-thumbs");
+  const prev = document.getElementById("fh-gallery-prev");
+  const next = document.getElementById("fh-gallery-next");
+  if (!main || !fhGalleryImages.length) return;
+
+  main.classList.remove("zoomed");
+  main.src = "/firsthugs/" + encodeURI(fhGalleryImages[fhGalleryIndex]);
+  main.alt = fhGalleryProductName + " photo " + (fhGalleryIndex + 1);
+  counter.textContent = `${fhGalleryIndex + 1} / ${fhGalleryImages.length}`;
+  prev.hidden = fhGalleryImages.length < 2;
+  next.hidden = fhGalleryImages.length < 2;
+
+  thumbs.innerHTML = fhGalleryImages.map((img, i) => `
+    <button type="button" class="${i === fhGalleryIndex ? 'active' : ''}" data-gallery-index="${i}" aria-label="View photo ${i + 1}">
+      <img src="/firsthugs/${encodeURI(img)}" alt="">
+    </button>
+  `).join("");
+  thumbs.querySelectorAll("button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      fhGalleryIndex = Number(btn.dataset.galleryIndex);
+      renderProductGallery();
+    });
+  });
+}
+
+function changeProductGallery(step) {
+  if (fhGalleryImages.length < 2) return;
+  fhGalleryIndex = (fhGalleryIndex + step + fhGalleryImages.length) % fhGalleryImages.length;
+  renderProductGallery();
+}
+
+function initProductGallery() {
+  const gallery = document.getElementById("fh-gallery");
+  const mainWrap = document.querySelector("#fh-gallery .fh-gallery-main-wrap");
+  const main = document.getElementById("fh-gallery-main");
+  document.getElementById("fh-gallery-close").addEventListener("click", closeProductGallery);
+  document.getElementById("fh-gallery-prev").addEventListener("click", () => changeProductGallery(-1));
+  document.getElementById("fh-gallery-next").addEventListener("click", () => changeProductGallery(1));
+  main.addEventListener("click", () => main.classList.toggle("zoomed"));
+  gallery.addEventListener("click", e => { if (e.target === gallery) closeProductGallery(); });
+  document.addEventListener("keydown", e => {
+    if (!gallery.classList.contains("open")) return;
+    if (e.key === "Escape") closeProductGallery();
+    if (e.key === "ArrowLeft") changeProductGallery(-1);
+    if (e.key === "ArrowRight") changeProductGallery(1);
+  });
+  mainWrap.addEventListener("touchstart", e => {
+    fhGalleryTouchStartX = e.changedTouches[0].clientX;
+  }, {passive:true});
+  mainWrap.addEventListener("touchend", e => {
+    if (fhGalleryTouchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - fhGalleryTouchStartX;
+    fhGalleryTouchStartX = null;
+    if (Math.abs(dx) > 45) changeProductGallery(dx > 0 ? -1 : 1);
+  }, {passive:true});
+}
+
 const SUPABASE_URL = "https://dvywidmmoctjutndvwxd.supabase.co";
 const SUPABASE_KEY = "sb_publishable_B8DFQhrzF09OfL5G2qcjSg_LShA-DnH";
 const CART_ID_KEY = "firsthugs_cart_id";
@@ -1765,10 +1988,26 @@ function updateTimers() {
 }
 setInterval(() => { updateTimers(); const before=cart.length; cart=cart.filter(x => new Date(x.expires_at)>new Date()); if(cart.length!==before){localStorage.setItem(CART_KEY,JSON.stringify(cart));renderCart();refreshAvailability();}},1000);
 
+initProductGallery();
 renderCart();
 refreshAvailability();
 </script>
 
+
+
+
+<div id="fh-gallery" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Product photo gallery">
+  <div class="fh-gallery-inner">
+    <button id="fh-gallery-close" type="button" aria-label="Close gallery">×</button>
+    <div class="fh-gallery-main-wrap">
+      <button id="fh-gallery-prev" class="fh-gallery-nav" type="button" aria-label="Previous photo">‹</button>
+      <img id="fh-gallery-main" src="" alt="">
+      <button id="fh-gallery-next" class="fh-gallery-nav" type="button" aria-label="Next photo">›</button>
+    </div>
+    <div class="fh-gallery-meta"><span id="fh-gallery-counter"></span> · Tap photo to zoom</div>
+    <div id="fh-gallery-thumbs" aria-label="Product photo thumbnails"></div>
+  </div>
+</div>
 
 
 <style>
