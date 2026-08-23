@@ -1652,12 +1652,15 @@ function checkoutCart() {
 function renderCart() {
   const count = document.getElementById("fh-cart-count"); if (count) count.textContent = cart.length;
   const list = document.getElementById("fh-cart-items"); if (!list) return;
+  const footer = document.getElementById('fh-cart-footer');
   if (!cart.length) {
     list.innerHTML = '<p>Your cart is empty.</p>';
+    if (footer) footer.innerHTML = '';
     return;
   }
   const total = cart.reduce((sum, item) => sum + Number(item.price || 0), 0);
-  list.innerHTML = cart.map((x,i) => `<div class="fh-cart-item"><strong>${x.name}</strong><br>Size: ${x.size}<br>RM${x.price}<br><span class="fh-timer" data-exp="${x.expires_at}"></span><br><button class="fh-remove-btn" type="button" data-cart-index="${i}">Remove</button></div>`).join("") + `<div class="fh-cart-total"><strong>Total: RM${total}</strong></div><button id="fh-checkout-btn" type="button">CHECKOUT</button>`;
+  list.innerHTML = cart.map((x,i) => `<div class="fh-cart-item"><strong>${x.name}</strong><br>Size: ${x.size}<br>RM${x.price}<br><span class="fh-timer" data-exp="${x.expires_at}"></span><br><button class="fh-remove-btn" type="button" data-cart-index="${i}">Remove</button></div>`).join("");
+  if (footer) footer.innerHTML = `<div class="fh-cart-total"><strong>Total: RM${total}</strong></div><button id="fh-checkout-btn" type="button">CHECKOUT</button>`;
   list.querySelectorAll('.fh-remove-btn').forEach(btn => {
     btn.addEventListener('click', () => removeCartItem(Number(btn.dataset.cartIndex)));
   });
@@ -1682,11 +1685,11 @@ refreshAvailability();
 
 <style>
 #fh-cart-button{position:fixed;right:18px;bottom:18px;z-index:9998;border:0;border-radius:999px;padding:14px 18px;background:#de6f52;color:#fff;font-weight:700;box-shadow:0 6px 20px #0002;cursor:pointer}
-#fh-cart-panel{position:fixed;right:-390px;top:0;width:min(380px,92vw);height:100vh;background:#fff;z-index:9999;box-shadow:-8px 0 30px #0002;padding:24px;transition:right .25s;overflow:auto}
-#fh-cart-panel.open{right:0}.fh-cart-close{float:right;border:0;background:none;font-size:28px;cursor:pointer}.fh-cart-item{padding:16px 0;border-bottom:1px solid #eee;line-height:1.6}.fh-cart-item button{margin-top:8px;cursor:pointer}.fh-timer{font-weight:700;color:#9d3f57}.fh-cart-total{padding:18px 0 12px;font-size:18px}#fh-checkout-btn{width:100%;border:0;border-radius:999px;padding:14px 18px;background:#de6f52;color:#fff;font-weight:700;font-size:16px;cursor:pointer}
+#fh-cart-panel{position:fixed;right:-390px;top:0;width:min(380px,92vw);height:100vh;background:#fff;z-index:9999;box-shadow:-8px 0 30px #0002;padding:24px 24px 0;transition:right .25s;display:flex;flex-direction:column;overflow:hidden}
+#fh-cart-panel.open{right:0}.fh-cart-close{position:absolute;right:20px;top:14px;border:0;background:none;font-size:28px;cursor:pointer}.fh-cart-item{padding:16px 0;border-bottom:1px solid #eee;line-height:1.6}.fh-cart-item button{margin-top:8px;cursor:pointer}.fh-timer{font-weight:700;color:#9d3f57}#fh-cart-items{flex:1;overflow:auto;padding-right:4px}.fh-cart-footer{position:sticky;bottom:0;background:#fff;border-top:1px solid #eee;padding:12px 0 18px}.fh-cart-total{padding:4px 0 12px;font-size:18px}#fh-checkout-btn{width:100%;border:0;border-radius:999px;padding:14px 18px;background:#de6f52;color:#fff;font-weight:700;font-size:16px;cursor:pointer}
 </style>
 <button id="fh-cart-button" type="button" onclick="document.getElementById('fh-cart-panel').classList.add('open')">CART (<span id="fh-cart-count">0</span>)</button>
-<aside id="fh-cart-panel"><button class="fh-cart-close" type="button" onclick="this.parentElement.classList.remove('open')">×</button><h2>Your Cart</h2><p>Items are reserved for 15 minutes.</p><div id="fh-cart-items"></div></aside>
+<aside id="fh-cart-panel"><button class="fh-cart-close" type="button" onclick="this.parentElement.classList.remove('open')">×</button><h2>Your Cart</h2><p>Items are reserved for 15 minutes.</p><div id="fh-cart-items"></div><div id="fh-cart-footer" class="fh-cart-footer"></div></aside>
 
 </body>
 
