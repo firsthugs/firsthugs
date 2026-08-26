@@ -338,9 +338,59 @@ const products = [
     ]
   },
 
-  
+  {
+    name: "(NWT) Ted Baker Pink Mesh Long Sleeve Embroidered Detail Dress",
+    price: 246,
+    image: "G71510s7.jpg.webp",
 
-  
+    sizes: [
+      { size: "1.5-2y", available: true }
+    ]
+  },
+
+  {
+    name: "(NWT) Blue Embelished Mesh Dress",
+    price: 101,
+    image: "G76651s.jpg.webp",
+
+    sizes: [
+      { size: "2-3y", available: true }
+    ]
+  },
+
+  {
+    name: "(NWT) Pink/Blue Snuggle Pyjamas 3 Pack",
+    price: 89,
+    image: "AC0777s5.jpg.webp",
+
+    sizes: [
+      { size: "2-3y", available: true }
+    ]
+  },
+
+  {
+    name: "(NWT) Navy Hot Wheels Short Sleeve T-Shirt",
+    price: 75,
+    images: [
+    "H48074s4.jpg.webp",
+    "H48074s5.jpg.webp"
+  ],
+    sizes: [
+      { size: "5-6y", available: true }
+    ]
+  },
+
+  {
+    name: "(NWT) Denim Blue Rainbow Standard Fit (F) High Top Trainers",
+    price: 98,
+    images: [
+    "W49324s.jpg.webp",
+  ],
+    sizes: [
+      { size: "5uk", available: true }
+    ]
+  },
+
 
   
 ];
