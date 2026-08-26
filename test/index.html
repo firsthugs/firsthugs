@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <base href="../">
   <meta charset="UTF-8">
 
   <meta
@@ -17,7 +16,7 @@
     content="Shop FirstHugs baby clothes in Malaysia. Dresses, tops, pants, dungarees and preloved baby clothing with nationwide delivery."
   >
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/firsthugs/style.css">
 
 
 <style>
@@ -110,6 +109,211 @@
   #calculator .fhc-result-box{padding:16px 18px}
 }
 </style>
+
+<style>
+/* FIRSTHUGS MOBILE PRODUCT GRID — 2 COLUMNS ONLY */
+@media (max-width: 760px) {
+  #products.section {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  #products .products {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+    align-items: stretch;
+  }
+
+  #products .card {
+    min-width: 0;
+    padding: 8px;
+    border-radius: 15px;
+  }
+
+  #products .product-image,
+  #products .placeholder {
+    width: 100%;
+    height: auto !important;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 11px;
+  }
+
+  #products .product-info h3 {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+
+  #products .price {
+    margin: 4px 0 8px;
+    font-size: 16px;
+  }
+
+  #products .availability-text,
+  #products .out-of-stock {
+    margin: 4px 0 8px;
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+  #products .size-label {
+    font-size: 11px;
+  }
+
+  #products .size-select {
+    margin-bottom: 8px;
+    padding: 9px 7px;
+    border-radius: 9px;
+    font-size: 12px;
+  }
+
+  #products .buy-button {
+    padding: 10px 6px;
+    font-size: 11px;
+    border-radius: 22px;
+  }
+}
+
+@media (max-width: 380px) {
+  #products.section {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  #products .products {
+    gap: 8px !important;
+  }
+
+  #products .card {
+    padding: 7px;
+  }
+
+  #products .product-info h3 {
+    font-size: 13px;
+  }
+}
+</style>
+
+
+<style>
+/* FIRSTHUGS PRODUCT GALLERY — click image to enlarge */
+#fh-gallery{
+  position:fixed;
+  inset:0;
+  z-index:10050;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.88);
+  padding:18px;
+}
+#fh-gallery.open{display:flex}
+#fh-gallery .fh-gallery-inner{
+  width:min(960px,100%);
+  max-height:94vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  position:relative;
+}
+#fh-gallery .fh-gallery-main-wrap{
+  width:100%;
+  min-height:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  touch-action:pan-y;
+}
+#fh-gallery-main{
+  max-width:100%;
+  max-height:76vh;
+  object-fit:contain;
+  border-radius:12px;
+  cursor:zoom-in;
+  transition:transform .2s ease;
+  transform-origin:center center;
+  will-change:transform;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+#fh-gallery-main.zoomed{cursor:grab}
+#fh-gallery-main.zoomed.dragging{cursor:grabbing;transition:none}
+#fh-gallery .fh-gallery-main-wrap.zoom-active{touch-action:none}
+#fh-gallery-close{
+  position:absolute;
+  right:0;
+  top:-2px;
+  width:44px;
+  height:44px;
+  border:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.94);
+  color:#222;
+  font-size:28px;
+  line-height:1;
+  cursor:pointer;
+  z-index:3;
+}
+.fh-gallery-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:46px;
+  height:46px;
+  border:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.9);
+  color:#222;
+  font-size:28px;
+  cursor:pointer;
+  z-index:2;
+}
+#fh-gallery-prev{left:8px}
+#fh-gallery-next{right:8px}
+#fh-gallery .fh-gallery-meta{
+  color:#fff;
+  text-align:center;
+  font-size:14px;
+}
+#fh-gallery-thumbs{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  overflow-x:auto;
+  padding:2px 4px 4px;
+}
+#fh-gallery-thumbs button{
+  flex:0 0 auto;
+  width:58px;
+  height:70px;
+  padding:0;
+  border:2px solid transparent;
+  border-radius:8px;
+  overflow:hidden;
+  background:#fff;
+  cursor:pointer;
+}
+#fh-gallery-thumbs button.active{border-color:#fff}
+#fh-gallery-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+#products .product-image{cursor:zoom-in}
+@media(max-width:760px){
+  #fh-gallery{padding:10px}
+  #fh-gallery-main{max-height:72vh;border-radius:8px}
+  .fh-gallery-nav{width:42px;height:42px;font-size:25px}
+  #fh-gallery-prev{left:2px}
+  #fh-gallery-next{right:2px}
+  #fh-gallery-close{right:2px;top:2px}
+  #fh-gallery-thumbs button{width:52px;height:64px}
+}
+</style>
+
 </head>
 
 
@@ -125,7 +329,7 @@
   <a class="brand" href="#home">
 
     <img
-      src="firsthugs-logo.jpeg"
+      src="/firsthugs/firsthugs-logo.jpeg"
       alt="FirstHugs Baby Clothes Logo"
     >
 
@@ -210,7 +414,7 @@
 
   <img
     class="hero-logo"
-    src="firsthugs-logo.jpeg"
+    src="/firsthugs/firsthugs-logo.jpeg"
     alt="FirstHugs Baby Clothes"
   >
 
@@ -1108,9 +1312,26 @@
      LOAD products.js
 ================================ -->
 
-<script src="products.js"></script>
+<script src="/firsthugs/products.js"></script>
 
+<script>
+/* Extra gallery photo for Lilac Purple Printed 3D Flower Party Dress */
+(function () {
+  const lilacProduct =
+    (typeof products !== "undefined" && Array.isArray(products))
+      ? products.find(
+          p => p.name === "Lilac Purple Printed 3D Flower Party Dress"
+        )
+      : null;
 
+  if (lilacProduct) {
+    lilacProduct.images = [
+      lilacProduct.image,
+      "test/lilac-purple-printed-3d-flower-party-dress-2.jpg"
+    ];
+  }
+})();
+</script>
 
 <script>
 
@@ -1146,15 +1367,24 @@ function displayProducts(productArray) {
       let imageHTML = "";
 
 
-      if (product.image) {
+      const productImages = Array.isArray(product.images) && product.images.length
+        ? product.images
+        : (product.image ? [product.image] : []);
+
+      if (productImages.length) {
 
         imageHTML = `
 
           <img
             class="product-image"
-            src="${encodeURI(product.image)}"
+            src="/firsthugs/${encodeURI(productImages[0])}"
             alt="${product.name}"
             loading="lazy"
+            role="button"
+            tabindex="0"
+            aria-label="View photos of ${product.name}"
+            onclick="openProductGallery(${productIndex})"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProductGallery(${productIndex});}"
           >
 
         `;
@@ -1387,20 +1617,30 @@ function displayProducts(productArray) {
 
 
 /* ==============================
-   UPDATE PRICE BY SIZE
+   UPDATE PRICE BY SELECTED SIZE
 ================================ */
+
 function updateProductPrice(productIndex) {
   const product = products[productIndex];
-  const sizeSelect = document.getElementById(`size-${productIndex}`);
-  const priceElement = document.getElementById(`price-${productIndex}`);
 
-  if (!product || !sizeSelect || !priceElement) return;
+  const sizeSelect =
+    document.getElementById(`size-${productIndex}`);
 
-  const selectedSize = product.sizes.find(
-    item => item.size === sizeSelect.value
-  );
+  const priceElement =
+    document.getElementById(`price-${productIndex}`);
 
-  const price = selectedSize?.price ?? product.price;
+  if (!product || !sizeSelect || !priceElement) {
+    return;
+  }
+
+  const selectedSize =
+    product.sizes.find(function(item) {
+      return item.size === sizeSelect.value;
+    });
+
+  const price =
+    selectedSize?.price ?? product.price;
+
   priceElement.textContent = `RM${price}`;
 }
 
@@ -1591,6 +1831,165 @@ document
 ================================ */
 
 
+
+/* ==============================
+   PRODUCT IMAGE GALLERY
+   Supports product.images = ["photo1.jpg", "photo2.jpg", ...]
+   Falls back to product.image when only one photo exists.
+================================ */
+let fhGalleryImages = [];
+let fhGalleryIndex = 0;
+let fhGalleryProductName = "";
+let fhGalleryTouchStartX = null;
+
+function getProductImages(product) {
+  if (Array.isArray(product.images) && product.images.length) return product.images;
+  return product.image ? [product.image] : [];
+}
+
+function openProductGallery(productIndex) {
+  const product = products[productIndex];
+  if (!product) return;
+  const images = getProductImages(product);
+  if (!images.length) return;
+  fhGalleryImages = images;
+  fhGalleryIndex = 0;
+  fhGalleryProductName = product.name;
+  const gallery = document.getElementById("fh-gallery");
+  gallery.classList.add("open");
+  gallery.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  renderProductGallery();
+}
+
+function closeProductGallery() {
+  const gallery = document.getElementById("fh-gallery");
+  gallery.classList.remove("open");
+  gallery.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  const main = document.getElementById("fh-gallery-main");
+  main.classList.remove("zoomed");
+}
+
+function renderProductGallery() {
+  const main = document.getElementById("fh-gallery-main");
+  const counter = document.getElementById("fh-gallery-counter");
+  const thumbs = document.getElementById("fh-gallery-thumbs");
+  const prev = document.getElementById("fh-gallery-prev");
+  const next = document.getElementById("fh-gallery-next");
+  if (!main || !fhGalleryImages.length) return;
+
+  main.classList.remove("zoomed");
+  main.src = "/firsthugs/" + encodeURI(fhGalleryImages[fhGalleryIndex]);
+  main.alt = fhGalleryProductName + " photo " + (fhGalleryIndex + 1);
+  counter.textContent = `${fhGalleryIndex + 1} / ${fhGalleryImages.length}`;
+  prev.hidden = fhGalleryImages.length < 2;
+  next.hidden = fhGalleryImages.length < 2;
+
+  thumbs.innerHTML = fhGalleryImages.map((img, i) => `
+    <button type="button" class="${i === fhGalleryIndex ? 'active' : ''}" data-gallery-index="${i}" aria-label="View photo ${i + 1}">
+      <img src="/firsthugs/${encodeURI(img)}" alt="">
+    </button>
+  `).join("");
+  thumbs.querySelectorAll("button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      fhGalleryIndex = Number(btn.dataset.galleryIndex);
+      renderProductGallery();
+    });
+  });
+}
+
+function changeProductGallery(step) {
+  if (fhGalleryImages.length < 2) return;
+  fhGalleryIndex = (fhGalleryIndex + step + fhGalleryImages.length) % fhGalleryImages.length;
+  renderProductGallery();
+}
+
+function initProductGallery() {
+  const gallery = document.getElementById("fh-gallery");
+  const mainWrap = document.querySelector("#fh-gallery .fh-gallery-main-wrap");
+  const main = document.getElementById("fh-gallery-main");
+  let scale = 1, panX = 0, panY = 0;
+  let dragging = false, moved = false, startX = 0, startY = 0, startPanX = 0, startPanY = 0;
+
+  function applyTransform(animate = true) {
+    main.style.transition = animate ? "transform .2s ease" : "none";
+    main.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+    main.classList.toggle("zoomed", scale > 1);
+    mainWrap.classList.toggle("zoom-active", scale > 1);
+  }
+
+  function resetZoom() {
+    scale = 1; panX = 0; panY = 0;
+    applyTransform(true);
+  }
+
+  function toggleZoom(e) {
+    if (moved) { moved = false; return; }
+    if (scale > 1) {
+      resetZoom();
+    } else {
+      scale = 2;
+      panX = 0; panY = 0;
+      applyTransform(true);
+    }
+  }
+
+  document.getElementById("fh-gallery-close").addEventListener("click", () => { resetZoom(); closeProductGallery(); });
+  document.getElementById("fh-gallery-prev").addEventListener("click", () => { resetZoom(); changeProductGallery(-1); });
+  document.getElementById("fh-gallery-next").addEventListener("click", () => { resetZoom(); changeProductGallery(1); });
+  main.addEventListener("click", toggleZoom);
+
+  main.addEventListener("pointerdown", e => {
+    if (scale <= 1) return;
+    dragging = true; moved = false;
+    startX = e.clientX; startY = e.clientY;
+    startPanX = panX; startPanY = panY;
+    main.classList.add("dragging");
+    try { main.setPointerCapture(e.pointerId); } catch (_) {}
+    e.preventDefault();
+  });
+  main.addEventListener("pointermove", e => {
+    if (!dragging || scale <= 1) return;
+    const dx = e.clientX - startX, dy = e.clientY - startY;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) moved = true;
+    panX = startPanX + dx; panY = startPanY + dy;
+    applyTransform(false);
+    e.preventDefault();
+  });
+  function endDrag(e) {
+    if (!dragging) return;
+    dragging = false;
+    main.classList.remove("dragging");
+    try { main.releasePointerCapture(e.pointerId); } catch (_) {}
+  }
+  main.addEventListener("pointerup", endDrag);
+  main.addEventListener("pointercancel", endDrag);
+
+  gallery.addEventListener("click", e => { if (e.target === gallery) { resetZoom(); closeProductGallery(); } });
+  document.addEventListener("keydown", e => {
+    if (!gallery.classList.contains("open")) return;
+    if (e.key === "Escape") { resetZoom(); closeProductGallery(); }
+    if (scale <= 1 && e.key === "ArrowLeft") changeProductGallery(-1);
+    if (scale <= 1 && e.key === "ArrowRight") changeProductGallery(1);
+  });
+  mainWrap.addEventListener("touchstart", e => {
+    if (scale > 1) return;
+    fhGalleryTouchStartX = e.changedTouches[0].clientX;
+  }, {passive:true});
+  mainWrap.addEventListener("touchend", e => {
+    if (scale > 1 || fhGalleryTouchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - fhGalleryTouchStartX;
+    fhGalleryTouchStartX = null;
+    if (Math.abs(dx) > 45) changeProductGallery(dx > 0 ? -1 : 1);
+  }, {passive:true});
+
+  // Any new gallery image starts at normal zoom.
+  const observer = new MutationObserver(() => resetZoom());
+  observer.observe(main, {attributes:true, attributeFilter:["src"]});
+}
+
+
 const SUPABASE_URL = "https://dvywidmmoctjutndvwxd.supabase.co";
 const SUPABASE_KEY = "sb_publishable_B8DFQhrzF09OfL5G2qcjSg_LShA-DnH";
 const CART_ID_KEY = "firsthugs_cart_id";
@@ -1602,11 +2001,17 @@ let cart = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
 async function rpc(name, body = {}) {
   const r = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${name}`, {
     method: "POST",
-    headers: {"apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}`, "Content-Type":"application/json"},
+    headers: {"apikey": SUPABASE_KEY, "Content-Type":"application/json"},
     body: JSON.stringify(body)
   });
-  if (!r.ok) throw new Error(await r.text());
-  return r.json();
+  if (!r.ok) {
+    const details = await r.text();
+    console.error("Supabase RPC failed", r.status, details);
+    throw new Error(`Supabase ${r.status}: ${details}`);
+  }
+  const text = await r.text();
+  if (!text) return null;
+  try { return JSON.parse(text); } catch (_) { return text; }
 }
 
 async function refreshAvailability() {
@@ -1630,7 +2035,17 @@ async function addToCart(productIndex) {
     const result = await rpc("reserve_item", {p_cart_id: cartId, p_product_id: product.name, p_size: size, p_quantity: 1});
     const row = Array.isArray(result) ? result[0] : result;
     if (!row || !row.success) { alert("Sorry, this item has just been reserved or sold out."); await refreshAvailability(); return; }
-    cart.push({reservation_id: row.reservation_id, expires_at: row.expires_at, productIndex, name: product.name, size, price: product.price});
+    const selectedSize = product.sizes.find(s => s.size === size);
+const selectedPrice = selectedSize?.price ?? product.price;
+
+cart.push({
+  reservation_id: row.reservation_id,
+  expires_at: row.expires_at,
+  productIndex,
+  name: product.name,
+  size,
+  price: selectedPrice
+});
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
     renderCart(); await refreshAvailability();
     document.getElementById("fh-cart-panel").classList.add("open");
@@ -1639,15 +2054,50 @@ async function addToCart(productIndex) {
 
 async function removeCartItem(i) {
   const item = cart[i];
-  try { await rpc("cancel_reservation", {p_cart_id: cartId, p_reservation_id: item.reservation_id}); } catch(e) { console.error(e); }
-  cart.splice(i,1); localStorage.setItem(CART_KEY, JSON.stringify(cart)); renderCart(); await refreshAvailability();
+  if (!item) return;
+
+  // Remove from the visible cart immediately so the button always responds.
+  cart.splice(i, 1);
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  renderCart();
+
+  try {
+    await rpc("cancel_reservation", {
+      p_cart_id: cartId,
+      p_reservation_id: item.reservation_id
+    });
+  } catch (e) {
+    console.error("Could not release reservation", e);
+    alert("The item was removed from your cart, but its reservation could not be released yet. It will expire automatically.");
+  }
+  await refreshAvailability();
+}
+
+function checkoutCart() {
+  if (!cart.length) { alert("Your cart is empty."); return; }
+  const total = cart.reduce((sum, item) => sum + Number(item.price || 0), 0);
+  const lines = cart.map((item, i) => `${i + 1}. ${item.name}\nSize: ${item.size}\nPrice: RM${item.price}`).join("\n\n");
+  const message = `Hi FirstHugs! 🧸\n\nI would like to order:\n\n${lines}\n\nTotal: RM${total}\n\nThese items are currently reserved in my cart.`;
+  const telegramLink = "https://t.me/firsthugsAin?text=" + encodeURIComponent(message);
+  window.open(telegramLink, "_blank");
 }
 
 function renderCart() {
   const count = document.getElementById("fh-cart-count"); if (count) count.textContent = cart.length;
   const list = document.getElementById("fh-cart-items"); if (!list) return;
-  if (!cart.length) { list.innerHTML = '<p>Your cart is empty.</p>'; return; }
-  list.innerHTML = cart.map((x,i) => `<div class="fh-cart-item"><strong>${x.name}</strong><br>Size: ${x.size}<br>RM${x.price}<br><span class="fh-timer" data-exp="${x.expires_at}"></span><br><button type="button" onclick="removeCartItem(${i})">Remove</button></div>`).join("");
+  const footer = document.getElementById('fh-cart-footer');
+  if (!cart.length) {
+    list.innerHTML = '<p>Your cart is empty.</p>';
+    if (footer) footer.innerHTML = '';
+    return;
+  }
+  const total = cart.reduce((sum, item) => sum + Number(item.price || 0), 0);
+  list.innerHTML = cart.map((x,i) => `<div class="fh-cart-item"><strong>${x.name}</strong><br>Size: ${x.size}<br>RM${x.price}<br><span class="fh-timer" data-exp="${x.expires_at}"></span><br><button class="fh-remove-btn" type="button" data-cart-index="${i}">Remove</button></div>`).join("");
+  if (footer) footer.innerHTML = `<div class="fh-cart-total"><strong>Total: RM${total}</strong></div><button id="fh-checkout-btn" type="button">CHECKOUT</button>`;
+  list.querySelectorAll('.fh-remove-btn').forEach(btn => {
+    btn.addEventListener('click', () => removeCartItem(Number(btn.dataset.cartIndex)));
+  });
+  document.getElementById('fh-checkout-btn')?.addEventListener('click', checkoutCart);
   updateTimers();
 }
 function updateTimers() {
@@ -1660,19 +2110,37 @@ function updateTimers() {
 }
 setInterval(() => { updateTimers(); const before=cart.length; cart=cart.filter(x => new Date(x.expires_at)>new Date()); if(cart.length!==before){localStorage.setItem(CART_KEY,JSON.stringify(cart));renderCart();refreshAvailability();}},1000);
 
-renderCart();
-refreshAvailability();
+window.addEventListener("DOMContentLoaded", () => {
+  initProductGallery();
+  renderCart();
+  refreshAvailability();
+});
 </script>
 
 
 
+
+<div id="fh-gallery" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Product photo gallery">
+  <div class="fh-gallery-inner">
+    <button id="fh-gallery-close" type="button" aria-label="Close gallery">×</button>
+    <div class="fh-gallery-main-wrap">
+      <button id="fh-gallery-prev" class="fh-gallery-nav" type="button" aria-label="Previous photo">‹</button>
+      <img id="fh-gallery-main" src="" alt="">
+      <button id="fh-gallery-next" class="fh-gallery-nav" type="button" aria-label="Next photo">›</button>
+    </div>
+    <div class="fh-gallery-meta"><span id="fh-gallery-counter"></span> · Tap to zoom · Drag to move</div>
+    <div id="fh-gallery-thumbs" aria-label="Product photo thumbnails"></div>
+  </div>
+</div>
+
+
 <style>
 #fh-cart-button{position:fixed;right:18px;bottom:18px;z-index:9998;border:0;border-radius:999px;padding:14px 18px;background:#de6f52;color:#fff;font-weight:700;box-shadow:0 6px 20px #0002;cursor:pointer}
-#fh-cart-panel{position:fixed;right:-390px;top:0;width:min(380px,92vw);height:100vh;background:#fff;z-index:9999;box-shadow:-8px 0 30px #0002;padding:24px;transition:right .25s;overflow:auto}
-#fh-cart-panel.open{right:0}.fh-cart-close{float:right;border:0;background:none;font-size:28px;cursor:pointer}.fh-cart-item{padding:16px 0;border-bottom:1px solid #eee;line-height:1.6}.fh-cart-item button{margin-top:8px}.fh-timer{font-weight:700;color:#9d3f57}
+#fh-cart-panel{position:fixed;right:-390px;top:0;width:min(380px,92vw);height:100vh;background:#fff;z-index:9999;box-shadow:-8px 0 30px #0002;padding:24px 24px 0;transition:right .25s;display:flex;flex-direction:column;overflow:hidden}
+#fh-cart-panel.open{right:0}.fh-cart-close{position:absolute;right:20px;top:14px;border:0;background:none;font-size:28px;cursor:pointer}.fh-cart-item{padding:16px 0;border-bottom:1px solid #eee;line-height:1.6}.fh-cart-item button{margin-top:8px;cursor:pointer}.fh-timer{font-weight:700;color:#9d3f57}#fh-cart-items{flex:1;overflow:auto;padding-right:4px}.fh-cart-footer{position:sticky;bottom:0;background:#fff;border-top:1px solid #eee;padding:12px 0 18px}.fh-cart-total{padding:4px 0 12px;font-size:18px}#fh-checkout-btn{width:100%;border:0;border-radius:999px;padding:14px 18px;background:#de6f52;color:#fff;font-weight:700;font-size:16px;cursor:pointer}
 </style>
 <button id="fh-cart-button" type="button" onclick="document.getElementById('fh-cart-panel').classList.add('open')">CART (<span id="fh-cart-count">0</span>)</button>
-<aside id="fh-cart-panel"><button class="fh-cart-close" type="button" onclick="this.parentElement.classList.remove('open')">×</button><h2>Your Cart</h2><p>Items are reserved for 15 minutes.</p><div id="fh-cart-items"></div></aside>
+<aside id="fh-cart-panel"><button class="fh-cart-close" type="button" onclick="this.parentElement.classList.remove('open')">×</button><h2>Your Cart</h2><p>Items are reserved for 15 minutes.</p><div id="fh-cart-items"></div><div id="fh-cart-footer" class="fh-cart-footer"></div></aside>
 
 </body>
 
