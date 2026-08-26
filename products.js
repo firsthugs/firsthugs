@@ -539,6 +539,50 @@ const products = [
       { size: "1 1/2y", available: true }
     ]
   },
+
+  {
+    name: "(PRELOVED IRIS) ZARA Gingham and Embroidered Lemon Set",
+    price: 165,
+    images: [
+    "8b43c045-1119-4c6e-83cf-ee53b1e80e49.png",
+    "2026-08-27 01.00.16.jpg",
+    "2026-08-27 00.45.12.jpg"
+  ],
+    sizes: [
+      { size: "2y", available: true }
+    ]
+  },
+
+  {
+    name: "(PRELOVED IRIS) Black/White Gingham Sleeveless Playsuit",
+    price: 89,
+    images: [
+    "be1b8377-0afb-4ce9-89ef-214b224ef899.png",
+    "2026-08-27 01.00.20.jpg",
+    "2026-08-27 00.45.19.jpg"
+  ],
+    sizes: [
+      { size: "9-12m", available: true }
+    ]
+  },
+
+  {
+    name: "(PRELOVED IRIS) Next Swimsuit with Hat",
+    price: 50,
+    images: [
+    "bca3f018-031d-4b92-b89a-e27da0787a2f.png",
+    "2026-08-27 01.00.24.jpg",
+    "2026-08-27 00.45.22.jpg"
+  ],
+    sizes: [
+      { size: "12-18m", available: true }
+    ]
+  },
+
+  
+
+
+
   
 
   
