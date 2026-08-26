@@ -436,7 +436,7 @@ const products = [
   },
 
   {
-    name: "(NWT) Pink Floral Embroidered Denim Dungaree SetBlue Long Sleeve Check Hooded Shirt",
+    name: "(NWT) Pink Floral Embroidered Denim Dungaree Set",
     price: 142,
     images: [
     "28200272-9a79-4e58-bc47-60bd2aafe377.png",
