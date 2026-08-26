@@ -230,6 +230,7 @@ const products = [
   name: "(NWT) Black/White Gingham Sleeveless Playsuit",
 
   price: 120,
+  priceDisplay: "120–128",
 
   images: [
     "Black:White Gingham Sleeveless Playsuit 1.jpg.webp",
