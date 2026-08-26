@@ -479,13 +479,67 @@ const products = [
     ]
   },
 
-  
-  
+  {
+    name: "(NWT) Gold Wide Fit (G) Mary Jane Touch Fastening Occasion Shoes",
+    price: 98,
+    images: [
+    "H63346s.jpg.webp",
+    "H63346s3.jpg.webp"
+  ],
+    sizes: [
+      { size: "6uk", available: true }
+    ]
+  },
 
-  
+  {
+    name: "(NWT) Next Wide Fit Fisherman Occasion Sandals",
+    price: 65,
+    images: [
+    "65818bf7-8d7c-4c30-9baa-cc85f6d5eac2.png",
+  ],
+    sizes: [
+      { size: "6uk", available: true }
+    ]
+  },
 
-  
+  {
+    name: "(NWT) ZARA Cut-Out Ballet Flats",
+    price: 75,
+    images: [
+    "16553730600-e4.jpg",
+    "16553730600-e3.jpg"
+  ],
+    sizes: [
+      { size: "21(12.9)", available: true }
+    ]
+  },
 
+  {
+    name: "(NWT) VANS Slip On Checkerboard",
+    price: 130,
+    images: [
+    "vn000d0sjv6_red_02.jpg.webp",
+    "vn000d0sjv6_red_03.jpg.webp",
+    "vn000d0sjv6_red_04.jpg.webp"
+  ],
+    sizes: [
+      { size: "7.5uk(14cm)", available: true }
+    ]
+  },
+
+  {
+    name: "(NWT) ZARA Striped Tshirt and Shorts",
+    price: 50,
+    images: [
+    "eb18b80f-daf5-4de6-b81f-0ba6315c8b42.png",
+    "04805606046-e4.jpg",
+    "04805613046-e3.jpg"
+  ],
+    sizes: [
+      { size: "1 1/2y", available: true }
+    ]
+  },
+  
 
   
 ];
