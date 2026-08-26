@@ -255,6 +255,16 @@ const products = [
     }
   ]
 },
+  
+  {
+    name: "(NWT) Multi Juice Box Pull On Wide Trousers",
+    price: 82,
+    image: "pants.jpg.webp",
+
+    sizes: [
+      { size: "3-4y", available: true }
+    ]
+  },
    
   
 ];
