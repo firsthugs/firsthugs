@@ -445,6 +445,41 @@ const products = [
       { size: "6-9m", available: true }
     ]
   },
+
+  {
+    name: "(NWT) Neutral Bear Baby Fisherman Sandals",
+    price: 62,
+    images: [
+    "H62102s.jpg.webp",
+  ],
+    sizes: [
+      { size: "4uk", available: true }
+    ]
+  },
+
+  {
+    name: "(NWT) White Buckle Sandals",
+    price: 56,
+    images: [
+    "AL5317s3.jpg.webp",
+  ],
+    sizes: [
+      { size: "6uk", available: true }
+    ]
+  },
+
+  {
+    name: "(NWT) Black Patent Sparkle Standard Fit (F) Lace-Up Ankle Boots",
+    price: 59,
+    images: [
+    "AY2822s.jpg.webp",
+  ],
+    sizes: [
+      { size: "6uk", available: true }
+    ]
+  },
+
+  
   
 
   
