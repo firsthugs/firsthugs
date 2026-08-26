@@ -391,6 +391,66 @@ const products = [
     ]
   },
 
+  {
+    name: "(NWT) Blue Character Appliqué Standard Fit (F) High Top Trainers",
+    price: 76,
+    images: [
+    "F78843s4.jpg.webp",
+  ],
+    sizes: [
+      { size: "8uk", available: true }
+    ]
+  },
+
+  {
+    name: "(NWT) Cream Light Up Clogs",
+    price: 66,
+    images: [
+    "H69637s.jpg.webp",
+  ],
+    sizes: [
+      { size: "8uk", available: true }
+    ]
+  },
+
+  {
+    name: "(NWT) Bright Brunch Two Way Zip Baby Sleepsuits 3 Pack",
+    price: 120,
+    images: [
+    "V45930s.jpg.webp",
+  ],
+    sizes: [
+      { size: "6-9m", available: true }
+    ]
+  },
+
+  {
+    name: "(NWT) Blue Long Sleeve Check Hooded Shirt",
+    price: 69,
+    images: [
+    "W40849s6.jpg.webp",
+  ],
+    sizes: [
+      { size: "3-4y", available: true }
+    ]
+  },
+
+  {
+    name: "(NWT) Pink Floral Embroidered Denim Dungaree SetBlue Long Sleeve Check Hooded Shirt",
+    price: 142,
+    images: [
+    "28200272-9a79-4e58-bc47-60bd2aafe377.png",
+  ],
+    sizes: [
+      { size: "6-9m", available: true }
+    ]
+  },
+  
+
+  
+
+  
+
 
   
 ];
