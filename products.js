@@ -227,29 +227,33 @@ const products = [
   },
  
   {
-    name: "(NWT) Black/White Gingham Sleeveless Playsuit",
-    price: 120,
-    images: [
+  name: "(NWT) Black/White Gingham Sleeveless Playsuit",
+
+  price: 120,
+
+  images: [
     "Black/White Gingham Sleeveless Playsuit 1.jpg.webp",
-    "Black/White Gingham Sleeveless Playsuit2.jpg.webp",
-    ],
-    sizes: [
-      { size: "6-9m", available: true },
-      { size: "12-18m", available: true }
-     ]
-  },
-  
-  {
-    name: "(NWT) Black/White Gingham Sleeveless Playsuit",
-    price: 128,
-    images: [
-    "Black/White Gingham Sleeveless Playsuit 1.jpg.webp",
-    "Black/White Gingham Sleeveless Playsuit2.jpg.webp",
-    ],
-    sizes: [
-      { size: "2-3y", available: true },
-     ]
-  },
+    "Black/White Gingham Sleeveless Playsuit2.jpg.webp"
+  ],
+
+  sizes: [
+    {
+      size: "6-9m",
+      available: true,
+      price: 120
+    },
+    {
+      size: "12-18m",
+      available: true,
+      price: 120
+    },
+    {
+      size: "2-3y",
+      available: true,
+      price: 128
+    }
+  ]
+},
    
   
 ];
