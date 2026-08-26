@@ -265,6 +265,18 @@ const products = [
       { size: "3-4y", available: true }
     ]
   },
+
+  {
+    name: "(NWT) Monochrome Floral Jersey Dress",
+    price: 38,
+    images: [
+    "W971061.jpg.webp",
+    "W971062.jpg.webp"
+  ],
+    sizes: [
+      { size: "6-9m", available: true }
+    ]
+  },
    
   
 ];
