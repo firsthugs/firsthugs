@@ -232,8 +232,8 @@ const products = [
   price: 120,
 
   images: [
-    "Black/White Gingham Sleeveless Playsuit 1.jpg.webp",
-    "Black/White Gingham Sleeveless Playsuit2.jpg.webp"
+    "Black:White Gingham Sleeveless Playsuit 1.jpg.webp",
+    "Black:White Gingham Sleeveless Playsuit2.jpg.webp"
   ],
 
   sizes: [
