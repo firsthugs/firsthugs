@@ -2074,12 +2074,231 @@ async function removeCartItem(i) {
 }
 
 function checkoutCart() {
-  if (!cart.length) { alert("Your cart is empty."); return; }
-  const total = cart.reduce((sum, item) => sum + Number(item.price || 0), 0);
-  const lines = cart.map((item, i) => `${i + 1}. ${item.name}\nSize: ${item.size}\nPrice: RM${item.price}`).join("\n\n");
-  const message = `Hi FirstHugs! 🧸\n\nI would like to order:\n\n${lines}\n\nTotal: RM${total}\n\nThese items are currently reserved in my cart.`;
-  const telegramLink = "https://t.me/firsthugsAin?text=" + encodeURIComponent(message);
-  window.open(telegramLink, "_blank");
+  if (!cart.length) {
+    alert("Your cart is empty.");
+    return;
+  }
+
+  const modal = document.getElementById("fh-checkout-modal");
+  if (!modal) return;
+
+  document.getElementById("fh-cart-panel")?.classList.remove("open");
+  renderCheckoutSummary();
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+}
+
+function getCheckoutAmounts() {
+  const subtotal = cart.reduce(
+    (sum, item) => sum + Number(item.price || 0),
+    0
+  );
+
+  const region =
+    document.getElementById("fh-shipping-region")?.value || "";
+
+  const postage =
+    region === "peninsular" ? 7 :
+    region === "sabah-sarawak" ? 18 :
+    0;
+
+  return {
+    subtotal,
+    postage,
+    total: subtotal + postage
+  };
+}
+
+function renderCheckoutSummary() {
+  const itemsEl = document.getElementById("fh-checkout-items");
+  const subtotalEl = document.getElementById("fh-checkout-subtotal");
+  const postageEl = document.getElementById("fh-checkout-postage");
+  const totalEl = document.getElementById("fh-checkout-total");
+
+  if (itemsEl) {
+    itemsEl.innerHTML = cart.map(
+      (item, i) =>
+        `<div class="fh-checkout-line">
+          <strong>${i + 1}. ${item.name}</strong>
+          <span>Size: ${item.size}</span>
+          <span>RM${item.price}</span>
+        </div>`
+    ).join("");
+  }
+
+  const amounts = getCheckoutAmounts();
+  const region =
+    document.getElementById("fh-shipping-region")?.value || "";
+
+  if (subtotalEl) subtotalEl.textContent = `RM${amounts.subtotal}`;
+  if (postageEl) postageEl.textContent = region ? `RM${amounts.postage}` : "—";
+  if (totalEl) totalEl.textContent = region ? `RM${amounts.total}` : `RM${amounts.subtotal}`;
+}
+
+function closeCheckout() {
+  const modal = document.getElementById("fh-checkout-modal");
+  if (!modal) return;
+
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+}
+
+async function uploadReceipt(file, orderId) {
+  if (!file) {
+    throw new Error("Please upload your payment receipt.");
+  }
+
+  if (file.size > 8 * 1024 * 1024) {
+    throw new Error("Receipt file must be 8 MB or smaller.");
+  }
+
+  const extension =
+    (file.name.split(".").pop() || "jpg")
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, "") || "jpg";
+
+  const objectPath =
+    `${orderId}-${crypto.randomUUID()}.${extension}`;
+
+  const response = await fetch(
+    `${SUPABASE_URL}/storage/v1/object/receipts/${encodeURIComponent(objectPath)}`,
+    {
+      method: "POST",
+      headers: {
+        "apikey": SUPABASE_KEY,
+        "Authorization": `Bearer ${SUPABASE_KEY}`,
+        "Content-Type": file.type || "application/octet-stream",
+        "x-upsert": "false"
+      },
+      body: file
+    }
+  );
+
+  if (!response.ok) {
+    const details = await response.text();
+    console.error("Receipt upload failed", response.status, details);
+    throw new Error(
+      "Unable to upload receipt. Please make sure the Supabase receipts bucket is set up."
+    );
+  }
+
+  return `${SUPABASE_URL}/storage/v1/object/public/receipts/${encodeURIComponent(objectPath)}`;
+}
+
+async function sendPaidOrderToTelegram(event) {
+  event.preventDefault();
+
+  if (!cart.length) {
+    alert("Your cart is empty.");
+    closeCheckout();
+    return;
+  }
+
+  const name =
+    document.getElementById("fh-customer-name").value.trim();
+
+  const phone =
+    document.getElementById("fh-customer-phone").value.trim();
+
+  const address =
+    document.getElementById("fh-customer-address").value.trim();
+
+  const region =
+    document.getElementById("fh-shipping-region").value;
+
+  const receiptInput =
+    document.getElementById("fh-payment-receipt");
+
+  const file =
+    receiptInput.files?.[0];
+
+  if (!name || !phone || !address || !region || !file) {
+    alert(
+      "Please complete your details, choose postage, and upload your payment receipt."
+    );
+    return;
+  }
+
+  const button =
+    document.getElementById("fh-send-order-btn");
+
+  const oldText =
+    button.textContent;
+
+  try {
+    button.disabled = true;
+    button.textContent = "UPLOADING RECEIPT...";
+
+    const orderId =
+      `FH-${Date.now().toString().slice(-8)}`;
+
+    const receiptUrl =
+      await uploadReceipt(file, orderId);
+
+    const amounts =
+      getCheckoutAmounts();
+
+    const regionText =
+      region === "peninsular"
+        ? "Peninsular Malaysia"
+        : "Sabah / Sarawak";
+
+    const itemLines =
+      cart.map(
+        (item, i) =>
+          `${i + 1}. ${item.name}
+` +
+          `Size: ${item.size}
+` +
+          `Price: RM${item.price}`
+      ).join("
+
+");
+
+    const message =
+      `FIRSTHUGS PAID ORDER
+
+` +
+      `Order ID: ${orderId}
+
+` +
+      `Customer Name: ${name}
+` +
+      `Phone: ${phone}
+` +
+      `Address: ${address}
+` +
+      `Shipping: ${regionText}
+
+` +
+      `${itemLines}
+
+` +
+      `Subtotal: RM${amounts.subtotal}
+` +
+      `Postage: RM${amounts.postage}
+` +
+      `TOTAL PAID: RM${amounts.total}
+
+` +
+      `Payment Receipt:
+${receiptUrl}`;
+
+    const telegramLink =
+      "https://t.me/firsthugsAin?text=" +
+      encodeURIComponent(message);
+
+    button.textContent = "OPENING TELEGRAM...";
+    window.open(telegramLink, "_blank");
+
+  } catch (error) {
+    console.error(error);
+    alert(error.message || "Unable to submit order. Please try again.");
+
+  } finally {
+    button.disabled = false;
+    button.textContent = oldText;
+  }
 }
 
 function renderCart() {
@@ -2141,6 +2360,279 @@ window.addEventListener("DOMContentLoaded", () => {
 </style>
 <button id="fh-cart-button" type="button" onclick="document.getElementById('fh-cart-panel').classList.add('open')">CART (<span id="fh-cart-count">0</span>)</button>
 <aside id="fh-cart-panel"><button class="fh-cart-close" type="button" onclick="this.parentElement.classList.remove('open')">×</button><h2>Your Cart</h2><p>Items are reserved for 15 minutes.</p><div id="fh-cart-items"></div><div id="fh-cart-footer" class="fh-cart-footer"></div></aside>
+
+
+<!-- ==============================
+     FIRSTHUGS CHECKOUT + PAYMENT
+================================ -->
+<style>
+#fh-checkout-modal{
+  position:fixed;
+  inset:0;
+  z-index:10080;
+  display:none;
+  align-items:flex-start;
+  justify-content:center;
+  overflow:auto;
+  padding:18px;
+  background:rgba(25,17,19,.72);
+}
+#fh-checkout-modal.open{display:flex}
+#fh-checkout-card{
+  width:min(680px,100%);
+  margin:auto;
+  background:#fff;
+  border-radius:22px;
+  padding:22px;
+  box-shadow:0 24px 70px rgba(0,0,0,.28);
+  color:#3d2b31;
+  position:relative;
+}
+#fh-checkout-close{
+  position:absolute;
+  top:14px;
+  right:16px;
+  border:0;
+  background:transparent;
+  font-size:30px;
+  cursor:pointer;
+}
+#fh-checkout-card h2{margin:0 44px 6px 0}
+.fh-checkout-note{margin:0 0 18px;color:#725f64}
+#fh-checkout-items{
+  border:1px solid #f0d8dd;
+  border-radius:14px;
+  padding:4px 14px;
+  margin-bottom:16px;
+}
+.fh-checkout-line{
+  display:grid;
+  gap:3px;
+  padding:12px 0;
+  border-bottom:1px solid #f2e5e8;
+}
+.fh-checkout-line:last-child{border-bottom:0}
+.fh-checkout-totals{
+  display:grid;
+  gap:7px;
+  margin:14px 0 18px;
+  padding:14px;
+  border-radius:14px;
+  background:#fff7f9;
+}
+.fh-checkout-total-row{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+}
+.fh-checkout-grand{
+  font-size:20px;
+  font-weight:900;
+  padding-top:8px;
+  border-top:1px solid #ebcfd6;
+}
+.fh-checkout-field{
+  display:grid;
+  gap:7px;
+  margin:13px 0;
+}
+.fh-checkout-field label{font-weight:800}
+.fh-checkout-field input,
+.fh-checkout-field select,
+.fh-checkout-field textarea{
+  width:100%;
+  padding:12px 13px;
+  border:1px solid #e8cbd2;
+  border-radius:11px;
+  background:#fff;
+  color:#2d2124;
+  font:inherit;
+}
+.fh-checkout-field textarea{
+  min-height:92px;
+  resize:vertical;
+}
+#fh-payment-box{
+  margin-top:20px;
+  padding:16px;
+  border-radius:16px;
+  border:1px solid #f1ccd7;
+  background:#fff9fb;
+  text-align:center;
+}
+#fh-payment-box h3{margin:0 0 8px}
+#fh-payment-qr{
+  display:block;
+  width:min(430px,100%);
+  height:auto;
+  margin:12px auto;
+  border-radius:14px;
+}
+#fh-send-order-btn{
+  width:100%;
+  margin-top:16px;
+  padding:15px 18px;
+  border:0;
+  border-radius:999px;
+  background:#de6f52;
+  color:#fff;
+  font-size:16px;
+  font-weight:900;
+  cursor:pointer;
+}
+#fh-send-order-btn:disabled{
+  opacity:.6;
+  cursor:wait;
+}
+.fh-payment-small{
+  font-size:13px;
+  color:#765f65;
+  line-height:1.5;
+}
+@media(max-width:600px){
+  #fh-checkout-modal{padding:8px}
+  #fh-checkout-card{
+    border-radius:17px;
+    padding:18px 14px;
+  }
+}
+</style>
+
+<div
+  id="fh-checkout-modal"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Checkout and payment"
+>
+  <form
+    id="fh-checkout-card"
+    onsubmit="sendPaidOrderToTelegram(event)"
+  >
+    <button
+      id="fh-checkout-close"
+      type="button"
+      aria-label="Close checkout"
+      onclick="closeCheckout()"
+    >×</button>
+
+    <h2>Checkout</h2>
+
+    <p class="fh-checkout-note">
+      Complete your delivery details, choose postage,
+      pay using the QR below, then upload your receipt.
+    </p>
+
+    <div id="fh-checkout-items"></div>
+
+    <div class="fh-checkout-field">
+      <label for="fh-customer-name">Full Name</label>
+      <input
+        id="fh-customer-name"
+        type="text"
+        autocomplete="name"
+        required
+      >
+    </div>
+
+    <div class="fh-checkout-field">
+      <label for="fh-customer-phone">Phone Number</label>
+      <input
+        id="fh-customer-phone"
+        type="tel"
+        autocomplete="tel"
+        required
+      >
+    </div>
+
+    <div class="fh-checkout-field">
+      <label for="fh-customer-address">Delivery Address</label>
+      <textarea
+        id="fh-customer-address"
+        autocomplete="street-address"
+        required
+      ></textarea>
+    </div>
+
+    <div class="fh-checkout-field">
+      <label for="fh-shipping-region">Postage</label>
+
+      <select
+        id="fh-shipping-region"
+        required
+        onchange="renderCheckoutSummary()"
+      >
+        <option value="">Select shipping region</option>
+        <option value="peninsular">
+          Peninsular Malaysia — RM7
+        </option>
+        <option value="sabah-sarawak">
+          Sabah / Sarawak — RM18
+        </option>
+      </select>
+    </div>
+
+    <div class="fh-checkout-totals">
+      <div class="fh-checkout-total-row">
+        <span>Subtotal</span>
+        <strong id="fh-checkout-subtotal">RM0</strong>
+      </div>
+
+      <div class="fh-checkout-total-row">
+        <span>Postage</span>
+        <strong id="fh-checkout-postage">—</strong>
+      </div>
+
+      <div class="fh-checkout-total-row fh-checkout-grand">
+        <span>Total Payment</span>
+        <span id="fh-checkout-total">RM0</span>
+      </div>
+    </div>
+
+    <div id="fh-payment-box">
+      <h3>Pay via DuitNow QR</h3>
+
+      <p>
+        Scan the QR and pay the exact Total Payment shown above.
+      </p>
+
+      <img
+        id="fh-payment-qr"
+        src="firsthugs-payment-qr.jpg"
+        alt="FirstHugs DuitNow QR payment"
+      >
+
+      <div
+        class="fh-checkout-field"
+        style="text-align:left"
+      >
+        <label for="fh-payment-receipt">
+          Upload Payment Receipt
+        </label>
+
+        <input
+          id="fh-payment-receipt"
+          type="file"
+          accept="image/*,application/pdf"
+          required
+        >
+      </div>
+
+      <p class="fh-payment-small">
+        After uploading your receipt, tap the button below.
+        Telegram will open with your order details and receipt link
+        ready to send to @firsthugsAin.
+      </p>
+    </div>
+
+    <button
+      id="fh-send-order-btn"
+      type="submit"
+    >
+      SEND PAID ORDER TO TELEGRAM
+    </button>
+  </form>
+</div>
 
 </body>
 
