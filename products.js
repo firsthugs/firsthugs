@@ -56,7 +56,6 @@ const products = [
     image: "dungaree.png",
 
     sizes: [
-      { size: "9-12m", available: false },
       { size: "6-9M", available: true }
     ]
   },
