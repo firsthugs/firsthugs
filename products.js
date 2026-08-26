@@ -298,5 +298,49 @@ const products = [
     ]
   },
 
+   {
+    name: "(NWT) Green Disney Princess Shorts Set",
+    price: 96,
+    image: "V04198s5.jpg",
+
+    sizes: [
+      { size: "12-18m", available: true }
+    ]
+  },
+
+  {
+    name: "(NWT) Blue Bunny Short Sleeve T-Shirt and Cycle Shorts Set",
+    price: 77,
+    image: "W60734s5.jpg.webp",
+
+    sizes: [
+      { size: "2-3y", available: true }
+    ]
+  },
+
+  {
+    name: "(NWT) Purple Cat Print Snuggle Pyjamas 3 Pack",
+    price: 82,
+    image: "AY9890s4.jpg.webp",
+
+    sizes: [
+      { size: "12-18m", available: true }
+    ]
+  },
+
+  {
+    name: "(NWT) Pink Padded Bunny Short Sleeve Top and Tutu Skirt Set",
+    price: 106,
+    image: "W17463s6.jpg.webp",
+
+    sizes: [
+      { size: "1.5-2y", available: true }
+    ]
+  },
+
+  
+
+  
+
   
 ];
