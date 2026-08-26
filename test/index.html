@@ -2002,7 +2002,17 @@ async function addToCart(productIndex) {
     const result = await rpc("reserve_item", {p_cart_id: cartId, p_product_id: product.name, p_size: size, p_quantity: 1});
     const row = Array.isArray(result) ? result[0] : result;
     if (!row || !row.success) { alert("Sorry, this item has just been reserved or sold out."); await refreshAvailability(); return; }
-    cart.push({reservation_id: row.reservation_id, expires_at: row.expires_at, productIndex, name: product.name, size, price: product.price});
+    const selectedSize = product.sizes.find(s => s.size === size);
+const selectedPrice = selectedSize?.price ?? product.price;
+
+cart.push({
+  reservation_id: row.reservation_id,
+  expires_at: row.expires_at,
+  productIndex,
+  name: product.name,
+  size,
+  price: selectedPrice
+});
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
     renderCart(); await refreshAvailability();
     document.getElementById("fh-cart-panel").classList.add("open");
