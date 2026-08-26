@@ -277,6 +277,26 @@ const products = [
       { size: "6-9m", available: true }
     ]
   },
-   
+
+  {
+    name: "(NWT) Blue Floral Scuba Top and Skirt Set",
+    price: 72,
+    image: "H90616s5.jpg.webp",
+
+    sizes: [
+      { size: "12-18m", available: true }
+    ]
+  },
+
+  {
+    name: "(NWT) Pink Floral Scuba Top and Skirt Set",
+    price: 109,
+    image: "H90617s6.jpg.webp",
+
+    sizes: [
+      { size: "9-12m", available: true }
+    ]
+  },
+
   
 ];
