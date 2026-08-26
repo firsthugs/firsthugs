@@ -2243,46 +2243,25 @@ async function sendPaidOrderToTelegram(event) {
         ? "Peninsular Malaysia"
         : "Sabah / Sarawak";
 
-    const itemLines =
-      cart.map(
-        (item, i) =>
-          `${i + 1}. ${item.name}
-` +
-          `Size: ${item.size}
-` +
-          `Price: RM${item.price}`
-      ).join("
-
-");
+    const itemLines = cart.map(
+      (item, i) =>
+        `${i + 1}. ${item.name}\n` +
+        `Size: ${item.size}\n` +
+        `Price: RM${item.price}`
+    ).join("\n\n");
 
     const message =
-      `FIRSTHUGS PAID ORDER
-
-` +
-      `Order ID: ${orderId}
-
-` +
-      `Customer Name: ${name}
-` +
-      `Phone: ${phone}
-` +
-      `Address: ${address}
-` +
-      `Shipping: ${regionText}
-
-` +
-      `${itemLines}
-
-` +
-      `Subtotal: RM${amounts.subtotal}
-` +
-      `Postage: RM${amounts.postage}
-` +
-      `TOTAL PAID: RM${amounts.total}
-
-` +
-      `Payment Receipt:
-${receiptUrl}`;
+      `FIRSTHUGS PAID ORDER\n\n` +
+      `Order ID: ${orderId}\n\n` +
+      `Customer Name: ${name}\n` +
+      `Phone: ${phone}\n` +
+      `Address: ${address}\n` +
+      `Shipping: ${regionText}\n\n` +
+      `${itemLines}\n\n` +
+      `Subtotal: RM${amounts.subtotal}\n` +
+      `Postage: RM${amounts.postage}\n` +
+      `TOTAL PAID: RM${amounts.total}\n\n` +
+      `Payment Receipt:\n${receiptUrl}`;
 
     const telegramLink =
       "https://t.me/firsthugsAin?text=" +
