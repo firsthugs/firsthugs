@@ -2235,15 +2235,40 @@ async function sendPaidOrderToTelegram(event) {
     const receiptUrl =
       await uploadReceipt(file, orderId);
 
-    const amounts =
-      getCheckoutAmounts();
+    // Keep a snapshot for the Telegram message before clearing the cart.
+    const paidItems = cart.map(item => ({ ...item }));
+
+    button.textContent = "CONFIRMING ORDER...";
+
+    // Convert every active reservation into permanent sold stock.
+    // Supabase confirm_paid_reservation() only succeeds for this cart's
+    // still-active reservation and deducts the matching inventory stock.
+    for (const item of paidItems) {
+      const confirmed = await rpc("confirm_paid_reservation", {
+        p_cart_id: cartId,
+        p_reservation_id: item.reservation_id
+      });
+
+      if (confirmed !== true) {
+        throw new Error(
+          `Unable to confirm ${item.name} (${item.size}). ` +
+          "Please contact FirstHugs before making another payment."
+        );
+      }
+    }
+
+    const amounts = {
+      subtotal: paidItems.reduce((sum, item) => sum + Number(item.price || 0), 0),
+      postage: region === "peninsular" ? 7 : 18
+    };
+    amounts.total = amounts.subtotal + amounts.postage;
 
     const regionText =
       region === "peninsular"
         ? "Peninsular Malaysia"
         : "Sabah / Sarawak";
 
-    const itemLines = cart.map(
+    const itemLines = paidItems.map(
       (item, i) =>
         `${i + 1}. ${item.name}\n` +
         `Size: ${item.size}\n` +
@@ -2266,6 +2291,13 @@ async function sendPaidOrderToTelegram(event) {
     const telegramLink =
       "https://t.me/firsthugsAin?text=" +
       encodeURIComponent(message);
+
+    // Order is now permanently sold in Supabase. Clear this browser cart.
+    cart = [];
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    renderCart();
+    closeCheckout();
+    await refreshAvailability();
 
     button.textContent = "OPENING TELEGRAM...";
     window.open(telegramLink, "_blank");
