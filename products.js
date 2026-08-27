@@ -522,7 +522,7 @@ const products = [
     "vn000d0sjv6_red_04.jpg.webp"
   ],
     sizes: [
-      { size: "7.5uk (14cm)", available: true }
+      { size: "7.5uk(14cm)", available: true }
     ]
   },
 
