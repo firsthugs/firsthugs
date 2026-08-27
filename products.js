@@ -541,7 +541,7 @@ const products = [
 
   {
     name: "(PRELOVED IRIS) ZARA Gingham and Embroidered Lemon Set",
-    price: 165,
+    price: 150,
     images: [
     "8b43c045-1119-4c6e-83cf-ee53b1e80e49.png",
     "2026-08-27 01.00.16.jpg",
