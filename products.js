@@ -578,11 +578,80 @@ const products = [
     ]
   },
 
-  
+  {
+    name: "(NWT) Ecru/Chocolate Brown Spot Blouse and Short Set",
+    price: 131,
+    images: [
+    "photo_2026-08-27 16.50.16.jpeg",
+    "photo_2026-08-27 16.50.22.jpeg"
+  ],
+    sizes: [
+      { size: "2-3y", available: true }
+    ]
+  },
 
+  {
+    name: "(PRELOVED) Monsoon Rose Maroon Shoes",
+    price: 78,
+    images: [
+    "2edb1c5b-9bef-4548-b6bb-52f83bbca25c.png",
+    "2026-08-27 17.15.03.jpg",
+    "2026-08-27 17.15.00.jpg",
+    "2026-08-27 17.14.55.jpg"
+  ],
+    sizes: [
+      { size: "7uk", available: true }
+    ]
+  },
 
+  {
+    name: "(NWT) River Island Glitter Mary Jane Shoes",
+    price: 103,
+    images: [
+    "2026-08-27 17.23.37.jpg",
+    "2026-08-27 17.23.30.jpg",
+    "2026-08-27 17.23.34.jpg"
+  ],
+    sizes: [
+      { size: "7uk", available: true }
+    ]
+  },
 
-  
+  {
+    name: "(PRELOVED) Ted Baker White Floral Dress",
+    price: 98,
+    images: [
+    "4a7be984-5197-4196-bcba-70b29e94dbc1.png",
+    "2026-08-27 17.27.09.jpg"
+  ],
+    sizes: [
+      { size: "1.5-2y", available: true }
+    ]
+  },
+
+  {
+    name: "(PRELOVED) Next Orange/Peach Mesh Dress",
+    price: 75,
+    images: [
+    "e32c3ecf-9bc4-4780-8510-5cb99089c504.png",
+    "photo_2026-08-27 17.32.22.jpeg"
+  ],
+    sizes: [
+      { size: "6-9m", available: true }
+    ]
+  },
+
+  {
+    name: "(PRELOVED) Ted Baker White and Floral Bottom Dress",
+    price: 68,
+    images: [
+    "3784dc65-1d4c-4fa8-8c3f-6a860e4c7601.png",
+    "photo_2026-08-27 17.34.35.jpeg"
+  ],
+    sizes: [
+      { size: "1.5-2y", available: true }
+    ]
+  },
 
   
 ];
