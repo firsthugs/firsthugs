@@ -653,5 +653,28 @@ const products = [
     ]
   },
 
+  {
+    name: "(PRELOVED) Next Floral Dress with Mustard Cardigan",
+    price: 45,
+    images: [
+    "9e9ac7a3-4585-4905-aff6-5f31e37d20ba.png",
+    "2026-08-27 17.41.42.jpg"
+  ],
+    sizes: [
+      { size: "6-9m", available: true }
+    ]
+  },
+
+  {
+    name: "(NWOT) ZARA Floral Print Shiffly Set",
+    price: 130,
+    images: [
+    "8b3e184f-5eba-4393-8e7c-95420ce10df3.png"
+  ],
+    sizes: [
+      { size: "2y", available: true }
+    ]
+  },
+
   
 ];
